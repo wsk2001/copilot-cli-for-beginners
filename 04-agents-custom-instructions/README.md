@@ -1,6 +1,2 @@
-한국어 번역: 전체 파일
-
-# Chapter 04 README
-
-## 소개
-이 장에서는 에이전트와 사용자 지침의 개념을 설명합니다... (여기에 전체 파일의 내용이 들어갑니다.)
+[Translation in Korean]
+(Please provide the actual translated content here.)
