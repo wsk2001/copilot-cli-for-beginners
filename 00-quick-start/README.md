@@ -1,66 +1,67 @@
 ![Chapter 00: Quick Start](images/chapter-header.png)
 
-Welcome! In this chapter, you'll get GitHub Copilot CLI (Command Line Interface) installed, signed in with your GitHub account, and verified that everything works. This is a quick setup chapter. Once you're up and running, the real demos start in Chapter 01!
+환영합니다! 이 장에서는 GitHub Copilot CLI(명령줄 인터페이스)를 설치하고, GitHub 계정으로 로그인하고, 모든 기능이 정상적으로 작동하는지 확인합니다. 이 장은 간단한 설정 과정입니다. 설정이 완료되면 1장에서 본격적인 데모를 시작하세요!
 
 ## 🎯 Learning Objectives
 
-By the end of this chapter, you'll have:
+이 장을 마치면 다음을 완료하게 됩니다.
 
-- Installed GitHub Copilot CLI
-- Signed in with your GitHub account
-- Verified it works with a simple test
+- GitHub Copilot CLI 설치 완료
+- GitHub 계정으로 로그인 완료
+- 간단한 테스트를 통해 정상 작동 확인 완료
 
-> ⏱️ **Estimated Time**: ~10 minutes (5 min reading + 5 min hands-on)
+> ⏱️ **소요 시간**: 약 10분 (읽기 5분 + 실습 5분)
+---
+
+## ✅ 필수 조건
+
+- Copilot 접근 권한이 있는 **GitHub 계정**. [구독 옵션 참조](https://github.com/features/copilot/plans). 학생/교사는 GitHub Education을 통해 Copilot Pro를 무료로 이용할 수 있습니다.](https://education.github.com/pack).
+
+- **터미널 기본 사용법**: `cd`, `ls` 등의 명령어를 능숙하게 사용할 수 있어야 합니다.
+
+### "Copilot 액세스"의 의미
+
+GitHub Copilot CLI를 사용하려면 활성 Copilot 구독이 필요합니다. [github.com/settings/copilot](https://github.com/settings/copilot)에서 구독 상태를 확인할 수 있습니다. 다음 중 하나가 표시되어야 합니다.
+
+- **Copilot Individual** - 개인 구독
+- **Copilot Business** - 조직을 통한 구독
+- **Copilot Enterprise** - 기업을 통한 구독
+- **GitHub Education** - 인증된 학생/교사를 위한 무료 구독
+
+"GitHub Copilot에 대한 액세스 권한이 없습니다."라는 메시지가 표시되면 무료 옵션을 사용하거나, 구독 플랜에 가입하거나, 액세스 권한을 제공하는 조직에 가입해야 합니다.
 
 ---
 
-## ✅ Prerequisites
+## 설치
 
-- **GitHub Account** with Copilot access. [See subscription options](https://github.com/features/copilot/plans). Students/Teachers can access Copilot Pro for [free via GitHub Education](https://education.github.com/pack).
-- **Terminal basics**: Comfortable with commands like `cd` and `ls`
+> ⏱️ **소요 시간**: 설치는 2~5분 정도 소요됩니다. 인증에 1~2분이 추가됩니다.
 
-### What "Copilot Access" Means
+### 권장: GitHub Codespaces (설치 필요 없음)
 
-GitHub Copilot CLI requires an active Copilot subscription. You can check your status at [github.com/settings/copilot](https://github.com/settings/copilot). You should see one of:
+사전 요구 사항을 설치하고 싶지 않다면 GitHub Codespaces를 사용하세요. GitHub Copilot CLI가 바로 사용 가능하며(로그인 필요), Python 3.13, pytest, GitHub CLI가 사전 설치되어 있습니다.
 
-- **Copilot Individual** - Personal subscription
-- **Copilot Business** - Through your organization
-- **Copilot Enterprise** - Through your enterprise
-- **GitHub Education** - Free for verified students/teachers
+1. [이 저장소를 포크](https://github.com/github/copilot-cli-for-beginners/fork)하여 GitHub 계정에 복사하세요.
+2. **코드** > **코드스페이스** > **main에 코드스페이스 생성**을 선택하세요.
+3. 컨테이너가 생성될 때까지 몇 분 정도 기다리세요.
+4. 이제 사용할 준비가 되었습니다! 터미널이 코드스페이스 환경에서 자동으로 열립니다.
 
-If you see "You don't have access to GitHub Copilot," you'll need to use the free option, subscribe to a plan, or join an organization that provides access.
+💡 **코드스페이스에서 확인하세요**: `cd samples/book-app-project && python book_app.py help` 명령어를 실행하여 Python과 샘플 앱이 정상적으로 작동하는지 확인하세요.
 
----
+### 대안: 로컬 설치
 
-## Installation
+> 💡 **어떤 방법을 선택해야 할지 모르시겠나요?** Node.js가 설치되어 있다면 `npm`을 사용하세요. 그렇지 않다면 시스템에 맞는 옵션을 선택하세요.
 
-> ⏱️ **Time estimate**: Installation takes 2-5 minutes. Authentication adds another 1-2 minutes.
+> 💡 **데모 실행을 위해 Python이 필요합니다.** 이 과정에서는 Python 샘플 앱을 사용합니다. 로컬에서 작업하는 경우 데모를 시작하기 전에 [Python 3.10 이상](https://www.python.org/downloads/)을 설치하세요.
 
-### Recommended: GitHub Codespaces (Zero Setup)
+> **참고:** 이 과정 전반에 걸쳐 보여지는 주요 예제는 Python(`samples/book-app-project`)을 사용하지만, JavaScript(`samples/book-app-project-js`) 및 C#(`samples/book-app-project-cs`) 버전도 제공되므로 해당 언어를 선호하는 경우 사용할 수 있습니다. 각 샘플에는 해당 언어로 앱을 실행하는 방법에 대한 지침이 포함된 README 파일이 있습니다.
 
-If you don't want to install any of the prerequisites, you can use GitHub Codespaces, which has the GitHub Copilot CLI ready to go (you'll need to sign in), pre-installs Python 3.13, pytest, and the GitHub CLI.
 
-1. [Fork this repository](https://github.com/github/copilot-cli-for-beginners/fork) to your GitHub account
-2. Select **Code** > **Codespaces** > **Create codespace on main**
-3. Wait a few minutes for the container to build
-4. You're ready to go! The terminal will open automatically in the Codespace environment.
+시스템에 맞는 방법을 선택하세요.
 
-> 💡 **Verify in Codespace**: Run `cd samples/book-app-project && python book_app.py help` to confirm Python and the sample app are working.
-
-### Alternative: Local Installation
-
-> 💡 **Not sure which to pick?** Use `npm` if you have Node.js installed. Otherwise, choose the option that matches your system.
-
-> 💡 **Python required for demos**: The course uses a Python sample app. If you're working locally, install [Python 3.10+](https://www.python.org/downloads/) before starting the demos.
-
-> **Note:** While the primary examples shown throughout the course use Python (`samples/book-app-project`), JavaScript (`samples/book-app-project-js`) and C# (`samples/book-app-project-cs`) versions are also available if you prefer to work with those languages. Each sample has a README with instructions for running the app in that language.
-
-Choose the method that works for your system:
-
-### All Platforms (npm)
+### 모든 플랫폼 (npm)
 
 ```bash
-# If you have Node.js installed, this is a quick way to get the CLI
+# Node.js가 설치되어 있다면, 다음 명령어를 사용하여 CLI를 빠르게 설치할 수 있습니다.
 npm install -g @github/copilot
 ```
 
@@ -76,107 +77,107 @@ brew install copilot-cli
 winget install GitHub.Copilot
 ```
 
-### macOS/Linux (Install Script)
+### macOS/Linux (설치 스크립트)
 
 ```bash
 curl -fsSL https://gh.io/copilot-install | bash
 ```
-
 ---
 
-## Authentication
+## 인증
 
-Open a terminal window at the root of the `copilot-cli-for-beginners` repository, start the CLI and allow access to the folder.
+`copilot-cli-for-beginners` 저장소의 루트 디렉토리에서 터미널 창을 열고, CLI를 실행한 다음 해당 폴더에 대한 접근을 허용하세요.
 
 ```bash
 copilot
 ```
 
-You'll be asked to trust the folder containing the repository (if you haven't already). You can trust it one time or across all future sessions.
+저장소가 포함된 폴더를 신뢰할지 묻는 메시지가 나타납니다(이미 신뢰하고 있지 않은 경우). 한 번만 신뢰하거나 향후 모든 세션에서 신뢰할 수 있도록 설정할 수 있습니다.
 
-<img src="images/copilot-trust.png" alt="Trusting files in a folder with the Copilot CLI" width="800"/>
+<img src="images/copilot-trust.png" alt="Copilot CLI를 사용하여 폴더 내 파일 신뢰" width="800"/>
 
-After trusting the folder, you can sign in with your GitHub account.
+폴더를 신뢰한 후 GitHub 계정으로 로그인할 수 있습니다.
 
 ```
 > /login
 ```
 
-**What happens next:**
+**다음 단계:**
 
-1. Copilot CLI displays a one-time code (like `ABCD-1234`)
-2. Your browser opens to GitHub's device authorization page. Sign in to GitHub if you haven't already.
-3. Enter the code when prompted
-4. Select "Authorize" to grant GitHub Copilot CLI access
-5. Return to your terminal - you're now signed in!
+1. Copilot CLI에 일회용 인증 코드(예: `ABCD-1234`)가 표시됩니다.
+2. 브라우저에 GitHub 기기 인증 페이지가 열립니다. GitHub에 로그인하지 않은 경우 로그인하세요.
 
-<img src="images/auth-device-flow.png" alt="Device Authorization Flow - showing the 5-step process from terminal login to signed-in confirmation" width="800"/>
+3. 메시지가 나타나면 코드를 입력하세요.
+4. "승인"을 선택하여 GitHub Copilot CLI에 액세스 권한을 부여하세요.
+5. 터미널로 돌아가세요. 이제 로그인되었습니다!
 
-*The device authorization flow: your terminal generates a code, you verify it in the browser, and Copilot CLI is authenticated.*
+<img src="images/auth-device-flow.png" alt="기기 인증 흐름 - 터미널 로그인부터 로그인 확인까지 5단계 프로세스" width="800"/>
 
-**Tip**: The sign-in persists across sessions. You only need to do this once unless your token expires or you explicitly sign out.
+*기기 인증 흐름: 터미널에서 코드가 생성되고, 브라우저에서 코드를 확인하면 Copilot CLI가 인증됩니다.*
+
+**팁**: 로그인은 세션 간에 유지됩니다. 토큰이 만료되거나 명시적으로 로그아웃하지 않는 한 이 과정은 한 번만 수행하면 됩니다.
 
 ---
 
-## Verify It Works
+## 작동 확인
 
-### Step 1: Test Copilot CLI
+### 1단계: Copilot CLI 테스트
 
-Now that you're signed in, let's verify that Copilot CLI is working for you. In the terminal, start the CLI if you haven't already:
+로그인하셨으니 이제 Copilot CLI가 제대로 작동하는지 확인해 보겠습니다. 터미널에서 CLI를 실행하세요(아직 실행하지 않았다면):
 
 ```bash
 > Say hello and tell me what you can help with
 ```
 
-After you receive a response, you can exit the CLI:
+응답을 받으면 CLI를 종료할 수 있습니다:
 
 ```bash
 > /exit
 ```
-
 ---
 
 <details>
-<summary>🎬 See it in action!</summary>
+<summary>🎬 실제로 그 모습을 직접 보자!</summary>
 
 ![Hello Demo](images/hello-demo.gif)
 
-*Demo output varies. Your model, tools, and responses will differ from what's shown here.*
+*데모 결과는 다를 수 있습니다. 사용하시는 모델, 도구 및 응답은 여기에 표시된 내용과 다를 수 있습니다.*
 
 </details>
 
 ---
 
-**Expected output**: A friendly response listing Copilot CLI's capabilities.
+**예상 출력**: Copilot CLI의 기능을 나열하는 친절한 응답.
 
-### Step 2: Run the Sample Book App
+### 2단계: 샘플 책 앱 실행
 
-The course provides a sample app that you'll explore and improve throughout the course using the CLI *(You can see the code for this in /samples/book-app-project)*. Check that the *Python book collection terminal app* works before you get started. Run `python` or `python3` depending on your system.
+본 과정에서는 CLI를 사용하여 탐색하고 개선할 샘플 앱을 제공합니다(코드는 /samples/book-app-project에서 확인할 수 있습니다). 시작하기 전에 *Python 책 모음 터미널 앱*이 제대로 작동하는지 확인하세요. 시스템에 따라 `python` 또는 `python3`을 실행하세요.
 
-> **Note:** While the primary examples shown throughout the course use Python (`samples/book-app-project`), JavaScript (`samples/book-app-project-js`) and C# (`samples/book-app-project-cs`) versions are also available if you prefer to work with those languages. Each sample has a README with instructions for running the app in that language.
+> **참고:** 본 과정에서 주로 사용되는 예제는 Python(`samples/book-app-project`)을 사용하지만, JavaScript(`samples/book-app-project-js`) 및 C#(`samples/book-app-project-cs`) 버전도 제공되므로 해당 언어를 선호하는 경우 사용할 수 있습니다. 각 샘플에는 해당 언어로 앱을 실행하는 방법에 대한 지침이 포함된 README 파일이 있습니다.
 
 ```bash
 cd samples/book-app-project
 python book_app.py list
 ```
 
-**Expected output**: A list of 5 books including "The Hobbit", "1984", and "Dune".
+**예상 출력**: "호빗", "1984", "듄"을 포함한 5권의 책 목록
 
-### Step 3: Try Copilot CLI with the Book App
+### 3단계: Copilot CLI를 사용하여 책 앱 실행하기
 
-Navigate back to the repository root first (if you ran Step 2):
+먼저 저장소 루트로 이동합니다(2단계를 실행한 경우):
 
 ```bash
-cd ../..   # Back to the repository root if needed
-copilot 
-> What does @samples/book-app-project/book_app.py do?
-```
+cd ../.. # 필요한 경우 저장소 루트로 이동
+copilot
+> @samples/book-app-project/book_app.py는 무엇을 하는 파일인가요?
 
-**Expected output**: A summary of the book app's main functions and commands.
+``
 
-If you see an error, check the [troubleshooting section](#troubleshooting) below.
+**예상 출력**: 책 앱의 주요 기능 및 명령 요약
 
-Once you're done you can exit the Copilot CLI:
+오류가 발생하면 아래 [문제 해결 섹션](#troubleshooting)을 참조하세요.
+
+완료되면 Copilot CLI를 종료할 수 있습니다.
 
 ```bash
 > /exit
@@ -184,77 +185,77 @@ Once you're done you can exit the Copilot CLI:
 
 ---
 
-## ✅ You're Ready!
+## ✅ 준비 완료!
 
-That's it for installation. The real fun starts in Chapter 01, where you'll:
+설치는 이제 끝입니다. 본격적인 재미는 1장에서 시작됩니다. 1장에서는 다음과 같은 내용을 배우게 됩니다.
 
-- Watch AI review the book app and find code quality issues instantly
-- Learn three different ways to use Copilot CLI
-- Generate working code from plain English
+- AI가 책 앱을 검토하고 코드 품질 문제를 즉시 찾아내는 과정을 지켜보세요.
+- Copilot CLI를 사용하는 세 가지 방법을 알아보세요.
+- 일반 영어 코드로 작동하는 코드를 생성해 보세요.
 
-**[Continue to Chapter 01: First Steps →](../01-setup-and-first-steps/README.md)**
+**[1장: 첫 단계로 이동 →](../01-setup-and-first-steps/README.md)**
 
 ---
 
-## Troubleshooting
+## 문제 해결
 
-### "copilot: command not found"
+### "copilot: 명령어를 찾을 수 없습니다"
 
-The CLI isn't installed. Try a different installation method:
+CLI가 설치되지 않았습니다. 다른 설치 방법을 시도해 보세요.
 
 ```bash
-# If brew failed, try npm:
+# brew 설치가 실패하면 npm을 사용해 보세요.
 npm install -g @github/copilot
 
-# Or the install script:
+# 또는 설치 스크립트를 사용해 보세요.
 curl -fsSL https://gh.io/copilot-install | bash
 ```
 
-### "You don't have access to GitHub Copilot"
+### "GitHub Copilot에 액세스할 수 없습니다."
 
-1. Verify you have a Copilot subscription at [github.com/settings/copilot](https://github.com/settings/copilot)
-2. Check that your organization permits CLI access if using a work account
+1. [github.com/settings/copilot](https://github.com/settings/copilot)에서 Copilot 구독이 있는지 확인하세요.
+2. 회사 계정을 사용하는 경우 조직에서 CLI 액세스를 허용했는지 확인하세요.
 
-### "Authentication failed"
+### "인증 실패"
 
-Re-authenticate:
-
-```bash
-copilot
-> /login
-```
-
-### Browser doesn't open automatically
-
-Manually visit [github.com/login/device](https://github.com/login/device) and enter the code shown in your terminal.
-
-### Token expired
-
-Simply run `/login` again:
+다시 인증하세요.
 
 ```bash
 copilot
 > /login
 ```
 
-### Still stuck?
+### 브라우저가 자동으로 열리지 않음
 
-- Check the [GitHub Copilot CLI documentation](https://docs.github.com/copilot/concepts/agents/about-copilot-cli)
-- Search [GitHub Issues](https://github.com/github/copilot-cli/issues)
+[github.com/login/device](https://github.com/login/device)에 수동으로 접속하여 터미널에 표시된 코드를 입력하세요.
+
+### 토큰 만료
+
+`/login`을 다시 실행하세요.
+
+```bash
+copilot
+> /login
+```
+
+### 여전히 막혔나요?
+
+- [GitHub Copilot CLI 문서](https://docs.github.com/copilot/concepts/agents/about-copilot-cli)를 확인하세요.
+- [GitHub 이슈](https://github.com/github/copilot-cli/issues)를 검색하세요.
 
 ---
 
-## 🔑 Key Takeaways
+## 🔑 주요 내용
 
-1. **A GitHub Codespace is a quick way to get started** - Python, pytest, and GitHub Copilot CLI are all pre-installed so you can jump right into the demos
-2. **Multiple installation methods** - Choose what works for your system (Homebrew, WinGet, npm, or install script)
-3. **One-time authentication** - Login persists until token expires
-4. **The book app works** - You'll use `samples/book-app-project` throughout the entire course
+1. **GitHub Codespace는 빠르게 시작할 수 있는 방법입니다.** - Python, pytest, GitHub Copilot CLI가 모두 사전 설치되어 있으므로 데모를 바로 사용할 수 있습니다.
+2. **다양한 설치 방법** - 시스템에 맞는 방법(Homebrew, WinGet, npm 또는 설치 스크립트)을 선택하세요.
+3. **일회성 인증** - 토큰이 만료될 때까지 로그인이 유지됩니다.
+4. **책 앱이 작동합니다.** - 전체 과정에서 `samples/book-app-project`를 사용하게 됩니다.
 
-> 📚 **Official Documentation**: [Install Copilot CLI](https://docs.github.com/copilot/how-tos/copilot-cli/cli-getting-started) for installation options and requirements.
+> 📚 **공식 문서**: [Copilot 설치] [CLI](https://docs.github.com/copilot/how-tos/copilot-cli/cli-getting-started)에서 설치 옵션 및 요구 사항을 확인하세요.
 
-> 📋 **Quick Reference**: See the [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference) for a complete list of commands and shortcuts.
+> 📋 **빠른 참조**: 전체 명령 및 단축키 목록은 [GitHub Copilot CLI 명령 참조](https://docs.github.com/en/copilot/reference/cli-command-reference)를 참조하세요.
 
 ---
 
-**[Continue to Chapter 01: First Steps →](../01-setup-and-first-steps/README.md)**
+**[1장: 시작하기 →](../01-setup-and-first-steps/README.md)**
