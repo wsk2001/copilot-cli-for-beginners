@@ -303,50 +303,51 @@ def search_by_year_range(
 
 <a id="working-with-multiple-agents"></a>
 <details>
-<summary><strong>Working with Multiple Agents</strong> - Combine specialists, switch mid-session, agent-as-tools</summary>
+<summary><strong>여러 에이전트와 협업하기</strong> - 전문가 결합, 세션 중 전환, Agent를 도구로 활용</summary>
 
-## Working with Multiple Agents
+## 여러 에이전트와 협업하기
 
-The real power comes when specialists work together on a feature.
+전문가들이 협력하여 기능을 개발할 때 진정한 시너지가 발휘됩니다.
 
-### Example: Building a Simple Feature
+### 예시: 간단한 기능 구축
 
 ```bash
 copilot
 
-> I want to add a "search by year range" feature to the book app
+> 책 앱에 "연도 범위로 검색" 기능을 추가하고 싶습니다.
 
-# Use python-reviewer for design
+# 설계 단계에서는 python-reviewer를 사용합니다.
 > /agent
-# Select "python-reviewer"
+# "python-reviewer"를 선택합니다.
 
-> @samples/book-app-project/books.py Design a find_by_year_range method. What's the best approach?
+> @samples/book-app-project/books.py find_by_year_range 메서드를 설계하세요. 어떤 접근 방식이 가장 좋을까요?
 
-# Switch to pytest-helper for test design
+# 테스트 설계 단계에서는 pytest-helper로 전환합니다.
 > /agent
-# Select "pytest-helper"
+# "pytest-helper"를 선택합니다.
 
-> @samples/book-app-project/tests/test_books.py Design test cases for a find_by_year_range method.
-> What edge cases should we cover?
+> @samples/book-app-project/tests/test_books.py find_by_year_range 메서드에 대한 테스트 케이스를 설계하세요.
 
-# Synthesize both designs
-> Create an implementation plan that includes the method implementation and comprehensive tests.
+> 어떤 예외 상황을 고려해야 할까요?
+
+# 두 설계 결과를 종합합니다.
+> 메서드 구현과 포괄적인 테스트를 포함하는 구현 계획을 작성합니다.
 ```
 
-**The key insight**: You're the architect directing specialists. They handle the details, you handle the vision.
+**핵심 통찰**: 당신은 전문가들을 이끄는 건축가입니다. 그들은 세부 사항을 처리하고, 당신은 비전을 제시합니다.
 
 <details>
-<summary>🎬 See it in action!</summary>
+<summary>🎬 실제로 작동하는 모습을 확인하세요!</summary>
 
 ![Python Reviewer Demo](images/python-reviewer-demo.gif)
 
-*Demo output varies - your model, tools, and responses will differ from what's shown here.*
+*데모 출력 결과는 다를 수 있습니다. 사용하시는 모델, 도구 및 응답은 여기에 표시된 내용과 다를 수 있습니다.*
 
 </details>
 
-### Agent as Tools
+### 도구로서의 Agents
 
-When agents are configured, Copilot can also call them as tools during complex tasks. If you ask for a full-stack feature, Copilot may automatically delegate parts to the appropriate specialist agents.
+에이전트가 구성되면 Copilot은 복잡한 작업을 수행하는 동안 해당 에이전트를 도구로 호출할 수도 있습니다. 풀스택 기능을 요청하면 Copilot은 적절한 전문 에이전트에 작업의 일부를 자동으로 위임할 수 있습니다.
 
 </details>
 
@@ -354,15 +355,15 @@ When agents are configured, Copilot can also call them as tools during complex t
 
 <a id="organizing--sharing-agents"></a>
 <details>
-<summary><strong>Organizing & Sharing Agents</strong> - Naming, file placement, instruction files, and team sharing</summary>
+<summary><strong>조직 및 공유 에이전트</strong> - 파일 이름 지정, 파일 배치, 지침 파일 및 팀 공유</summary>
 
 ## Organizing & Sharing Agents
 
-### Naming Your Agents
+### 에이전트 이름 지정하기
 
-When you create agent files, the name matters. It's what you'll type after `/agent` or `--agent`, and what your teammates will see in the agent list.
+에이전트 파일을 생성할 때 이름은 중요합니다. `/agent` 또는 `--agent` 뒤에 입력하게 될 이름이며, 팀원들이 에이전트 목록에서 보게 될 이름이기도 합니다.
 
-| ✅ Good Names | ❌ Avoid |
+| ✅ 좋은 이름 | ❌ 피해야 할 이름 |
 |--------------|----------|
 | `frontend` | `my-agent` |
 | `backend-api` | `agent1` |
@@ -370,28 +371,28 @@ When you create agent files, the name matters. It's what you'll type after `/age
 | `react-specialist` | `code` |
 | `python-backend` | `assistant` |
 
-**Naming conventions:**
-- Use lowercase with hyphens: `my-agent-name.agent.md`
-- Include the domain: `frontend`, `backend`, `devops`, `security`
-- Be specific when needed: `react-typescript` vs just `frontend`
+**명명 규칙:**
+- 소문자와 하이픈 사용: `my-agent-name.agent.md`
+- 도메인 포함: `frontend`, `backend`, `devops`, `security`
+- 필요한 경우 구체적으로 명시: `react-typescript` vs. `frontend`
 
 ---
 
-### Sharing with Your Team
+### 팀과의 공유
 
-Place agent files in `.github/agents/` and they're version controlled. Push to your repo and every team member gets them automatically. But agents are just one type of file Copilot reads from your project. It also supports **instruction files** that apply automatically to every session, without anyone needing to run `/agent`.
+에이전트 파일은 `.github/agents/` 폴더에 저장하면 버전 관리가 됩니다. 저장소에 푸시하면 모든 팀원이 자동으로 파일을 받게 됩니다. 하지만 에이전트 파일은 Copilot이 프로젝트에서 읽어들이는 파일 유형 중 하나일 뿐입니다. Copilot은 `/agent`를 실행하지 않아도 모든 세션에 자동으로 적용되는 **지침 파일**도 지원합니다.
 
-Think of it this way: agents are specialists you call on, and instruction files are team rules that are always active.
+쉽게 말해, 에이전트는 도움을 요청할 수 있는 전문가이고, 지침 파일은 항상 활성화되어 있는 팀 규칙입니다.
 
-### Where to Put Your Files
+### 파일 저장 위치
 
-You already know the two main locations (see [Where to put agent files](#where-to-put-agent-files) above). Use this decision tree to choose:
+주요 저장 위치는 이미 두 곳(위의 [에이전트 파일 저장 위치](#where-to-put-agent-files) 참조)을 알고 계실 겁니다. 다음 결정 트리를 사용하여 에이전트 파일 위치를 선택하세요.
 
-<img src="images/agent-file-placement-decision-tree.png" alt="Decision tree for where to put agent files: experimenting → current folder, team use → .github/agents/, everywhere → ~/.copilot/agents/" width="800"/>
+<img src="images/agent-file-placement-decision-tree.png" alt="에이전트 파일 위치 결정 트리: 실험 → 현재 폴더, 팀 사용 → .github/agents/, 모든 곳 → ~/.copilot/agents/" width="800"/>
 
-**Start simple:** Create a single `*.agent.md` file in your project folder. Move it to a permanent location once you're happy with it.
+**간단하게 시작하세요:** 프로젝트 폴더에 `*.agent.md` 파일을 하나만 생성하세요. 만족스러우면 영구적인 위치로 이동하세요.
 
-Beyond agent files, Copilot also reads **project-level instruction files** automatically, no `/agent` needed. See [Configuring Your Project for Copilot](#configuring-your-project-for-copilot) below for `AGENTS.md`, `.instructions.md`, and `/init`.
+에이전트 파일 외에도 Copilot은 **프로젝트 수준의 지침 파일**을 자동으로 읽습니다. 따라서 `/agent`는 필요하지 않습니다. `AGENTS.md`, `.instructions.md` 및 `/init`에 대한 자세한 내용은 아래의 [Copilot용 프로젝트 구성](#configuring-your-project-for-copilot)을 참조하세요.
 
 </details>
 
@@ -399,43 +400,42 @@ Beyond agent files, Copilot also reads **project-level instruction files** autom
 
 <a id="configuring-your-project-for-copilot"></a>
 <details>
-<summary><strong>Configuring Your Project for Copilot</strong> - AGENTS.md, instruction files, and /init setup</summary>
+<summary><strong>Copilot용 프로젝트 구성하기</strong> - AGENTS.md, 지침 파일 및 /init 설정</summary>
 
-## Configuring Your Project for Copilot
+## Copilot을 위한 프로젝트 구성
 
-Agents are specialists you invoke on demand. **Project configuration files** are different: Copilot reads them automatically in every session to understand your project's conventions, tech stack, and rules. No one needs to run `/agent`; the context is always active for everyone working in the repo.
+에이전트는 필요에 따라 호출하는 전문가입니다. **프로젝트 구성 파일**은 다릅니다. Copilot은 매 세션마다 프로젝트 구성 파일을 자동으로 읽어 프로젝트의 규칙, 기술 스택 및 규정을 파악합니다. 따라서 `/agent`를 실행할 필요가 없습니다. 저장소에서 작업하는 모든 사용자는 항상 활성화된 컨텍스트를 사용할 수 있습니다.
 
-### Quick Setup with /init
+### `/init`을 사용한 빠른 설정
 
-The fastest way to get started is to let Copilot generate configuration files for you:
+가장 빠른 시작 방법은 Copilot이 구성 파일을 자동으로 생성하도록 하는 것입니다.
 
 ```bash
 copilot
 > /init
 ```
 
-Copilot will scan your project and create tailored instruction files. You can edit them afterwards.
+Copilot은 프로젝트를 스캔하여 맞춤형 지침 파일을 생성합니다. 생성된 파일은 나중에 편집할 수 있습니다.
 
-### Instruction File Formats
-
-| File | Scope | Notes |
+### 지침 파일 형식
+| 파일 | 범위 | 참고 사항 |
 |------|-------|-------|
-| `AGENTS.md` | Project root or nested | **Cross-platform standard** - works with Copilot and other AI assistants |
-| `.github/copilot-instructions.md` | Project | GitHub Copilot specific |
-| `.github/instructions/*.instructions.md` | Project | Granular, topic-specific instructions |
-| `CLAUDE.md`, `GEMINI.md` | Project root | Supported for compatibility |
+| `AGENTS.md` | 프로젝트 루트 또는 하위 폴더 | **크로스 플랫폼 표준** - Copilot 및 기타 AI 비서와 호환 |
+| `.github/copilot-instructions.md` | 프로젝트 | GitHub Copilot 전용 |
+| `.github/instructions/*.instructions.md` | 프로젝트 | 세부적이고 주제별 지침 |
+| `CLAUDE.md`, `GEMINI.md` | 프로젝트 루트 | 호환성을 위해 지원 |
 
-> 🎯 **Just getting started?** Use `AGENTS.md` for project instructions. You can explore the other formats later as needed.
+> 🎯 **처음 시작하시나요?** 프로젝트 지침에는 `AGENTS.md`를 사용하세요. 필요에 따라 나중에 다른 형식을 살펴볼 수 있습니다.
 
 ### AGENTS.md
 
-`AGENTS.md` is the recommended format. It's an [open standard](https://agents.md/) that works across Copilot and other AI coding tools. Place it in your repository root and Copilot reads it automatically. This project's own [AGENTS.md](../AGENTS.md) is a working example.
+`AGENTS.md`는 권장되는 형식입니다. Copilot 및 기타 AI 코딩 도구에서 사용할 수 있는 [개방형 표준](https://agents.md/)입니다. 저장소 루트에 배치하면 Copilot이 자동으로 읽습니다. 이 프로젝트의 [AGENTS.md](../AGENTS.md)는 작동 예시입니다.
 
-A typical `AGENTS.md` describes your project context, code style, security requirements, and testing standards. Use `/init` to generate one, or write your own following the pattern in our example file.
+일반적인 `AGENTS.md` 파일에는 프로젝트 컨텍스트, 코드 스타일, 보안 요구 사항 및 테스트 표준이 설명되어 있습니다. `/init`을 사용하여 생성하거나, 예시 파일의 패턴을 따라 직접 작성할 수 있습니다.
 
-### Custom Instruction Files (.instructions.md)
+### 사용자 지정 지침 파일(.instructions.md)
 
-For teams that want more granular control, split instructions into topic-specific files. Each file covers one concern and applies automatically:
+더욱 세밀한 제어가 필요한 팀의 경우, 지침을 주제별 파일로 분리할 수 있습니다. 각 파일은 하나의 문제를 다루며 자동으로 적용됩니다.
 
 ```
 .github/
@@ -445,13 +445,13 @@ For teams that want more granular control, split instructions into topic-specifi
     └── api-design.instructions.md
 ```
 
-> 💡 **Note**: Instruction files work with any language. This example uses Python to match our course project, but you can create similar files for TypeScript, Go, Rust, or any technology your team uses.
+💡 **참고**: 명령어 파일은 모든 언어에서 작동합니다. 이 예제는 수업 프로젝트에 맞춰 Python을 사용하지만, TypeScript, Go, Rust 또는 팀에서 사용하는 다른 기술에 대해서도 유사한 파일을 만들 수 있습니다.
 
-**Finding community instruction files**: Browse [github/awesome-copilot](https://github.com/github/awesome-copilot) for pre-made instruction files covering .NET, Angular, Azure, Python, Docker, and many more technologies.
+**커뮤니티에서 제공하는 명령어 파일 찾기**: [github/awesome-copilot](https://github.com/github/awesome-copilot)에서 .NET, Angular, Azure, Python, Docker 등 다양한 기술을 다루는 미리 만들어진 명령어 파일을 찾아보세요.
 
-### Disabling Custom Instructions
+### 사용자 지정 명령어 비활성화
 
-If you need Copilot to ignore all project-specific configurations (useful for debugging or comparing behavior):
+디버깅이나 동작 비교를 위해 Copilot이 프로젝트별 설정을 모두 무시하도록 하려면 다음과 같이 하세요.
 
 ```bash
 copilot --no-custom-instructions
@@ -463,76 +463,76 @@ copilot --no-custom-instructions
 
 <a id="agent-file-reference"></a>
 <details>
-<summary><strong>Agent File Reference</strong> - YAML properties, tool aliases, and complete examples</summary>
+<summary><strong>에이전트 파일 참조</strong> - YAML 속성, 도구 별칭 및 전체 예제</summary>
 
-## Agent File Reference
+## 에이전트 파일 참조
 
-### A More Complete Example
+### 보다 완벽한 예제
 
-You've seen the [minimal agent format](#-add-your-agents) above. Here's a more comprehensive agent that uses the `tools` property. Create `~/.copilot/agents/python-reviewer.agent.md`:
+위에서 [최소 에이전트 형식](#-에이전트 추가)을 보셨습니다. 다음은 `tools` 속성을 사용하는 보다 포괄적인 에이전트입니다. `~/.copilot/agents/python-reviewer.agent.md` 파일을 생성하세요.
 
 ```markdown
 ---
 name: python-reviewer
-description: Python code quality specialist for reviewing Python projects
+description: 파이썬 프로젝트 검토를 담당하는 파이썬 코드 품질 전문가
 tools: ["read", "edit", "search", "execute"]
 ---
 
-# Python Code Reviewer
+# 파이썬 코드 리뷰어
 
-You are a Python specialist focused on code quality and best practices.
+당신은 코드 품질과 모범 사례에 중점을 두는 Python 전문가입니다.
 
-**Your focus areas:**
-- Code quality (PEP 8, type hints, docstrings)
-- Performance optimization (list comprehensions, generators)
-- Error handling (proper exception handling)
-- Maintainability (DRY principles, clear naming)
+**주요 관심 분야:**
+- 코드 품질 (PEP 8, 타입 힌트, 독스트링)
+- 성능 최적화 (리스트 컴프리헨션, 제너레이터)
+- 오류 처리 (적절한 예외 처리)
+- 유지보수성 (DRY 원칙, 명확한 네이밍)
 
-**Code style requirements:**
-- Use Python 3.10+ features (dataclasses, type hints, pattern matching)
-- Follow PEP 8 naming conventions
-- Use context managers for file I/O
-- All functions must have type hints and docstrings
+**코드 스타일 요구 사항:**
+- Python 3.10 이상 기능 사용 (데이터 클래스, 타입 힌트, 패턴 매칭)
+- PEP 8 네이밍 규칙 준수
+- 파일 I/O에 컨텍스트 관리자 사용
+- 모든 함수에 타입 힌트와 독스트링 포함
 
-**When reviewing code, always check:**
-- Missing type hints on function signatures
-- Mutable default arguments
-- Proper error handling (no bare except)
-- Input validation completeness
+**코드 검토 시 항상 확인해야 할 사항:**
+- 함수 시그니처에 타입 힌트 누락 여부
+- 변경 가능한 기본 인자
+- 적절한 오류 처리 (bare except 사용 금지)
+- 입력 유효성 검사 완료 여부
 ```
 
-### YAML Properties
+### YAML 속성
 
-| Property | Required | Description |
+| 속성 | 필수 | 설명 |
 |----------|----------|-------------|
-| `name` | No | Display name (defaults to filename) |
-| `description` | **Yes** | What the agent does - helps Copilot understand when to suggest it |
-| `tools` | No | List of allowed tools (omit = all tools available). See tool aliases below. |
-| `target` | No | Limit to `vscode` or `github-copilot` only |
+| `name` | 아니요 | 표시 이름 (기본값은 파일 이름) |
+| `description` | **예** | 에이전트의 기능 - Copilot이 에이전트를 제안해야 하는 시점을 파악하는 데 도움이 됩니다. |
+| `tools` | 아니요 | 허용된 도구 목록 (생략 시 모든 도구 사용 가능). 아래 도구 별칭을 참조하세요. |
+| `target` | 아니요 | `vscode` 또는 `github-copilot`으로만 제한 |
 
-### Tool Aliases
+### 도구 별칭
 
-Use these names in the `tools` list:
-- `read` - Read file contents
-- `edit` - Edit files
-- `search` - Search files (grep/glob)
-- `execute` - Run shell commands (also: `shell`, `Bash`)
-- `agent` - Invoke other custom agents
+`tools` 목록에서 다음 이름을 사용하세요.
+- `read` - 파일 내용 읽기
+- `edit` - 파일 편집
+- `search` - 파일 검색(grep/glob)
+- `execute` - 셸 명령 실행(`shell`, `Bash`도 사용)
+- `agent` - 다른 사용자 지정 에이전트 호출
 
-> 📖 **Official docs**: [Custom agents configuration](https://docs.github.com/copilot/reference/custom-agents-configuration)
+> 📖 **공식 문서**: [사용자 지정 에이전트 구성](https://docs.github.com/copilot/reference/custom-agents-configuration)
 >
-> ⚠️ **VS Code Only**: The `model` property (for selecting AI models) works in VS Code but is not supported in GitHub Copilot CLI. You can safely include it for cross-platform agent files. GitHub Copilot CLI will ignore it.
+> ⚠️ **VS Code 전용**: `model` 속성(AI 모델 선택용)은 VS Code에서는 작동하지만 GitHub Copilot CLI에서는 지원되지 않습니다. 크로스 플랫폼 에이전트 파일에는 안전하게 포함할 수 있지만 GitHub Copilot CLI는 이를 무시합니다.
 
-### More Agent Templates
+### 추가 에이전트 템플릿
 
-> 💡 **Note for beginners**: The examples below are templates. **Replace the specific technologies with whatever your project uses.** The important thing is the *structure* of the agent, not the specific technologies mentioned.
+> 💡 **초보자 참고**: 아래 예시는 템플릿입니다. **구체적인 기술은 프로젝트에서 사용하는 기술로 대체하세요.** 중요한 것은 에이전트의 *구조*이지, 언급된 특정 기술이 아닙니다.
 
-This project includes working examples in the [.github/agents/](../.github/agents/) folder:
-- [hello-world.agent.md](../.github/agents/hello-world.agent.md) - Minimal example, start here
-- [python-reviewer.agent.md](../.github/agents/python-reviewer.agent.md) - Python code quality reviewer
-- [pytest-helper.agent.md](../.github/agents/pytest-helper.agent.md) - Pytest testing specialist
+이 프로젝트에는 [.github/agents/](../.github/agents/) 폴더에 다음과 같은 작동 예제가 포함되어 있습니다.
+- [hello-world.agent.md](../.github/agents/hello-world.agent.md) - 최소 예제, 여기서 시작하세요.
+- [python-reviewer.agent.md](../.github/agents/python-reviewer.agent.md) - Python 코드 품질 검토자
+- [pytest-helper.agent.md](../.github/agents/pytest-helper.agent.md) - Pytest 테스트 전문가
 
-For community agents, see [github/awesome-copilot](https://github.com/github/awesome-copilot).
+커뮤니티 에이전트는 [github/awesome-copilot](https://github.com/github/awesome-copilot)을 참조하세요.
 
 </details>
 
@@ -632,7 +632,7 @@ copilot
 **성공 기준**: 일관되고 고품질의 출력을 생성하는 3개의 에이전트가 있으며, `/agent`를 사용하여 에이전트 간에 전환할 수 있습니다.
 
 <details>
-<summary>💡 Hints (click to expand)</summary>
+<summary>💡 힌트 (클릭하여 펼치기)</summary>
 
 **Starter templates**: create one file per agent in `.github/agents/`:
 
@@ -711,7 +711,7 @@ copilot
 ---
 
 <details>
-<summary>🔧 <strong>Common Mistakes & Troubleshooting</strong> (click to expand)</summary>
+<summary>🔧 <strong>흔히 발생하는 실수 및 문제 해결 방법</strong> (클릭하여 펼치기)</summary>
 
 ### Common Mistakes
 
