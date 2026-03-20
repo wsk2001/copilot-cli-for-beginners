@@ -7,19 +7,19 @@
 
 🎯 [What You'll Learn](#what-youll-learn) &ensp; ✅ [Prerequisites](#prerequisites) &ensp; 🤖 [Copilot Family](#understanding-the-github-copilot-family) &ensp; 📚 [Course Structure](#course-structure) &ensp; 📋 [Command Reference](#-github-copilot-cli-command-reference)
 
-# GitHub Copilot CLI for Beginners
+# GitHub Copilot CLI 초보자용
 
-> **✨ Learn to supercharge your development workflow with AI-powered command-line assistance.**
+> **✨ AI 기반 명령줄 지원으로 개발 워크플로우를 강화하는 방법을 배워보세요.**
 
-GitHub Copilot CLI brings AI assistance directly to your terminal. Instead of switching to a browser or code editor, you can ask questions, generate full-featured applications, review code, generate tests, and debug issues without leaving your command line.
+GitHub Copilot CLI는 AI 지원 기능을 터미널에서 바로 사용할 수 있도록 해줍니다. 브라우저나 코드 편집기로 전환할 필요 없이 명령줄에서 바로 질문하고, 모든 기능을 갖춘 애플리케이션을 생성하고, 코드를 검토하고, 테스트를 생성하고, 문제를 디버깅할 수 있습니다.
 
-Think of it as having a knowledgeable colleague available 24/7 who can read your code, explain confusing patterns, and help you work faster!
+마치 24시간 내내 코드를 분석하고, 복잡한 패턴을 설명해주고, 작업 속도를 높여줄 수 있는 지식이 풍부한 동료가 있는 것과 같다고 생각하시면 됩니다!
 
-This course is designed for:
+이 과정은 다음을 위해 설계되었습니다.:
 
-- **Software Developers** who want to use AI from the command line
-- **Terminal users** who prefer keyboard-driven workflows over IDE integrations
-- **Teams looking to standardize** AI-assisted code review and development practices
+- 명령줄에서 AI를 사용하려는 **소프트웨어 개발자**
+- IDE 통합보다 키보드 기반 워크플로를 선호하는 **터미널 사용자**
+- **AI 기반 코드 검토 및 개발 방식을 표준화하려는 팀**
 
 <a href="https://aka.ms/githubcopilotdevdays" target="_blank">
   <picture>
@@ -27,73 +27,74 @@ This course is designed for:
   </picture>
 </a>
 
-## 🎯 What You'll Learn
+## 🎯 배우게 될 것
 
-This hands-on course takes you from zero to productive with GitHub Copilot CLI. You'll work with a single Python book collection app throughout all chapters, progressively improving it using AI-assisted workflows. By the end, you'll confidently use AI to review code, generate tests, debug issues, and automate workflows: all from your terminal.
+이 실습 중심 과정은 GitHub Copilot CLI를 처음 접하는 사람도 바로 활용할 수 있도록 도와줍니다. 모든 챕터에서 하나의 Python 도서 컬렉션 앱을 사용하며, AI 기반 워크플로를 통해 점진적으로 개선해 나갑니다. 과정을 마치면 터미널에서 AI를 활용하여 코드 검토, 테스트 생성, 문제 디버깅, 워크플로 자동화 등을 자신 있게 수행할 수 있게 됩니다.
 
-**No AI experience required.** If you can use a terminal, you can learn this.
+**AI 경험은 필요 없습니다.** 터미널을 사용할 수 있다면 배울 수 있습니다.
 
-**Perfect for:** Developers, students, and anyone who has experience with software development.
+**개발자, 학생, 그리고 소프트웨어 개발 경험이 있는 모든 분들께 완벽함.
 
 ## ✅ Prerequisites
 
-Before starting, ensure you have:
+시작하기 전에 반드시 확인하세요:
 
-- **GitHub account**: [Create one free](https://github.com/signup)<br>
-- **GitHub Copilot access**: [Free offering](https://github.com/features/copilot/plans), [Monthly subscription](https://github.com/features/copilot/plans), or [Free for students/teachers](https://education.github.com/pack)<br>
-- **Terminal basics**: Comfortable with `cd`, `ls`, running commands
+- **GitHub 계정**: [Create one free](https://github.com/signup)<br>
+- **GitHub Copilot 접근 권한**: [Free offering](https://github.com/features/copilot/plans), [Monthly subscription](https://github.com/features/copilot/plans), or [Free for students/teachers](https://education.github.com/pack)<br>
+- **터미널 기본 사용법**: `cd`, `ls` 명령어 사용 및 명령 실행에 익숙해야 함
 
-## 🤖 Understanding the GitHub Copilot Family
+## 🤖 GitHub Copilot 가족 이해하기
 
-GitHub Copilot has evolved into a family of AI-powered tools. Here's where each one lives:
+GitHub Copilot은 이제 AI 기반 도구 모음으로 발전했습니다. 각 도구의 위치는 다음과 같습니다.:
 
-| Product | Where It Runs | Description |
+| 제품 | 실행 환경 | 설명 |
 |---------|---------------|----------|
-| [**GitHub Copilot CLI**](https://docs.github.com/copilot/how-tos/copilot-cli/cli-getting-started)<br>(this course) | Your terminal |  Terminal-native AI coding assistant  |
-| [**GitHub Copilot**](https://docs.github.com/copilot) | VS Code, Visual Studio, JetBrains, etc. | Agent mode, chat, inline suggestions  |
-| [**Copilot on GitHub.com**](https://github.com/copilot) | GitHub | Immersive chat about your repos, create agents, and more |
-| [**GitHub Copilot coding agent**](https://docs.github.com/copilot/using-github-copilot/using-copilot-coding-agent-to-work-on-tasks) | GitHub  | Assign issues to agents, get PRs back |
+| [**GitHub Copilot CLI**](https://docs.github.com/copilot/how-tos/copilot-cli/cli-getting-started)<br>(this course) | Your terminal |  터미널 네이티브 AI 코딩 어시스턴트  |
+| [**GitHub Copilot**](https://docs.github.com/copilot) | VS Code, Visual Studio, JetBrains, etc. | 에이전트 모드, 채팅, 인라인 제안  |
+| [**Copilot on GitHub.com**](https://github.com/copilot) | GitHub | 저장소에 대한 몰입감 있는 대화, 에이전트 생성 등 |
+| [**GitHub Copilot coding agent**](https://docs.github.com/copilot/using-github-copilot/using-copilot-coding-agent-to-work-on-tasks) | GitHub  | 이슈를 에이전트에게 할당하고, PR을 되찾으세요 |
 
-This course focuses on **GitHub Copilot CLI**, bringing AI assistance directly to your terminal.
+이 과정은 **GitHub Copilot CLI**에 중점을 두어 AI 지원을 직접 터미널로 제공합니다.
 
-## 📚 Course Structure
+## 📚 과정 구조
 
 ![GitHub Copilot CLI Learning Path](images/learning-path.png)
 
-| Chapter | Title | What You'll Build |
+| 챕터 | 제목 | 만들게 될 것 |
 |:-------:|-------|-------------------|
-| 00 | 🚀 [Quick Start](./00-quick-start/README.md) | Installation and verification |
-| 01 | 👋 [First Steps](./01-setup-and-first-steps/README.md) | Live demos + three interaction modes |
-| 02 | 🔍 [Context and Conversations](./02-context-conversations/README.md) | Multi-file project analysis |
-| 03 | ⚡ [Development Workflows](./03-development-workflows/README.md) | Code review, debug, test generation |
-| 04 | 🤖 [Create Specialized AI Assistants](./04-agents-custom-instructions/README.md) | Custom agents for your workflow |
-| 05 | 🛠️ [Automate Repetitive Tasks](./05-skills/README.md) | Skills that load automatically |
-| 06 | 🔌 [Connect to GitHub, Databases & APIs](./06-mcp-servers/README.md) | MCP server integration |
-| 07 | 🎯 [Putting It All Together](./07-putting-it-together/README.md) | Complete feature workflows |
+| 00 | 🚀 [Quick Start](./00-quick-start/README.md) | 설치 및 검증 |
+| 01 | 👋 [First Steps](./01-setup-and-first-steps/README.md) | 라이브 데모 + 세 가지 상호작용 모드 |
+| 02 | 🔍 [Context and Conversations](./02-context-conversations/README.md) | 다중 파일 프로젝트 분석 |
+| 03 | ⚡ [Development Workflows](./03-development-workflows/README.md) | 코드 리뷰, 디버그, 테스트 생성|
+| 04 | 🤖 [Create Specialized AI Assistants](./04-agents-custom-instructions/README.md) | 워크플로우에 맞는 맞춤 에이전트 |
+| 05 | 🛠️ [Automate Repetitive Tasks](./05-skills/README.md) | 자동으로 로드되는 스킬들 |
+| 06 | 🔌 [Connect to GitHub, Databases & APIs](./06-mcp-servers/README.md) | MCP 서버 통합 |
+| 07 | 🎯 [Putting It All Together](./07-putting-it-together/README.md) | 완전한 기능 워크플로우 |
 
-## 📖 How This Course Works
+## 📖 이 과정의 작동 방식
 
-Each chapter follows the same pattern:
+각 장은 같은 패턴을 따릅니다:
 
-1. **Real-World Analogy**: Understand the concept through familiar comparisons
-2. **Core Concepts**: Learn the essential knowledge
-3. **Hands-On Examples**: Run actual commands and see results
-4. **Assignment**: Practice what you learned
-5. **What's Next**: Preview of the following chapter
+1. **Real-World Analogy**: 친숙한 비교를 통해 개념을 이해하세요
+2. **Core Concepts**: 필수 지식을 배우세요
+3. **Hands-On Examples**: 실제 명령을 실행해 보고 결과를 확인하세요
+4. **Assignment**: 배운 것을 연습하세요
+5. **What's Next**: 다음 장 미리보기
 
-**Code examples are runnable.** Every copilot text block in this course can be copied and run in your terminal.
+**코드 예제는 실행 가능합니다.** 이 강좌의 모든 Copilot 텍스트 블록은 복사하여 터미널에서 실행할 수 있습니다.
 
-## 📋 GitHub Copilot CLI Command Reference
+## 📋 GitHub Copilot CLI 명령어 참조
 
-The **[GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference)** helps you find commands and keyboard shortcuts to help you use Copilot CLI effectively.
+**[GitHub Copilot CLI 명령어 참조](https://docs.github.com/en/copilot/reference/cli-command-reference)**는 Copilot CLI를 효과적으로 사용하는 데 도움이 되는 명령어와 단축키를 찾는 데 유용합니다.
 
-## 🙋 Getting Help
+## 🙋 도움 요청
 
-- 🐛 **Found a bug?** [Open an Issue](https://github.com/github/copilot-cli-for-beginners/issues)
-- 🤝 **Want to contribute?** PRs welcome!
-- 📚 **Official Docs:** [GitHub Copilot CLI Documentation](https://docs.github.com/copilot/concepts/agents/about-copilot-cli)
+- 🐛 **버그를 발견하셨나요?** [이슈 제출](https://github.com/github/copilot-cli-for-beginners/issues)
+- 🤝 **기여하고 싶으신가요?** PR을 환영합니다!
 
-## License
+- 📚 **공식 문서:** [GitHub Copilot CLI 문서](https://docs.github.com/copilot/concepts/agents/about-copilot-cli)
 
-This project is licensed under the terms of the MIT open source license. Please refer to the [LICENSE](./LICENSE) file for the full terms.
+## 라이선스
+
+이 프로젝트는 MIT 오픈 소스 라이선스 조건에 따라 배포됩니다. 전체 조건은 [LICENSE](./LICENSE) 파일을 참조하십시오.
 
