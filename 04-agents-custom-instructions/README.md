@@ -1,78 +1,79 @@
 ![Chapter 04: Agents and Custom Instructions](images/chapter-header.png)
 
-> **What if you could hire a Python code reviewer, testing expert, and security reviewer... all in one tool?**
+**파이썬 코드 리뷰어, 테스트 전문가, 보안 리뷰어를 모두 하나의 도구로 고용할 수 있다면 어떨까요?**
 
-In Chapter 03, you mastered the essential workflows: code review, refactoring, debugging, test generation, and git integration. Those make you highly productive with GitHub Copilot CLI. Now, let's take it further.
+3장에서는 코드 리뷰, 리팩토링, 디버깅, 테스트 생성, Git 통합 등 필수적인 워크플로우를 익혔습니다. 이러한 워크플로우를 통해 GitHub Copilot CLI를 매우 효율적으로 활용할 수 있습니다. 이제 한 단계 더 나아가 보겠습니다.
 
-So far, you've been using Copilot CLI as a general-purpose assistant. Agents let you give it a specific persona with built-in standards, like a code reviewer that enforces type hints and PEP 8, or a testing helper that writes pytest cases. You'll see how the same prompt gets noticeably better results when handled by an agent with targeted instructions.
+지금까지 Copilot CLI는 범용 도우미로 사용해 왔습니다. 에이전트를 사용하면 타입 힌트 및 PEP 8을 준수하는 코드 리뷰어 또는 pytest 케이스를 작성하는 테스트 도우미처럼 특정 역할과 표준을 Copilot에 부여할 수 있습니다. 에이전트에 특정 지침을 입력하면 동일한 작업도 훨씬 더 나은 결과를 얻을 수 있습니다.
 
-## 🎯 Learning Objectives
+## 🎯 학습 목표
 
-By the end of this chapter, you'll be able to:
+이 장을 마치면 다음을 수행할 수 있게 됩니다.
 
-- Use built-in agents: Plan (`/plan`), Code-review (`/review`), and understand automatic agents (Explore, Task)
-- Create specialized agents using agent files (`.agent.md`)
-- Use agents for domain-specific tasks
-- Switch between agents using `/agent` and `--agent`
-- Write custom instruction files for project-specific standards
+- 내장 에이전트 사용: 계획(`/plan`), 코드 검토(`/review`) 및 자동 에이전트(탐색, 작업) 이해
+- 에이전트 파일(`.agent.md`)을 사용하여 특수 에이전트 생성
+- 도메인별 작업에 에이전트 사용
+- `/agent` 및 `--agent`를 사용하여 에이전트 간 전환
+- 프로젝트별 표준에 맞는 사용자 지정 지침 파일 작성
 
-> ⏱️ **Estimated Time**: ~55 minutes (20 min reading + 35 min hands-on)
+> ⏱️ **예상 소요 시간**: 약 55분 (읽기 20분 + 실습 35분)
 
 ---
 
-## 🧩 Real-World Analogy: Hiring Specialists
+## 🧩 실제 사례: 전문가 고용
 
-When you need help with your house, you don't call one "general helper." You call specialists:
+집에 도움이 필요할 때, "만능 해결사" 한 명을 부르는 대신 전문가를 부릅니다.
 
-| Problem | Specialist | Why |
+| 문제 | 전문가 | 이유 |
 |---------|------------|-----|
-| Leaky pipe | Plumber | Knows plumbing codes, has specialized tools |
-| Rewiring | Electrician | Understands safety requirements, up to code |
-| New roof | Roofer | Knows materials, local weather considerations |
+| 누수 | 배관공 | 배관 규정을 숙지하고 특수 공구를 보유 |
+| 배선 교체 | 전기 기술자 | 안전 요건을 이해하고 규정을 준수 |
+| 새 지붕 | 지붕 시공 전문가 | 자재 및 지역 기후 조건을 고려 |
 
-Agents work the same way. Instead of a generic AI, use agents that focus on specific tasks and know the right process to follow. Set up the instructions once, then reuse them whenever you need that specialty: code review, testing, security, documentation.
+에이전트도 마찬가지입니다. 일반적인 AI 대신 특정 작업에 집중하고 올바른 프로세스를 따르는 에이전트를 사용하세요. 지침을 한 번만 설정하면 해당 전문 분야가 필요할 때마다 재사용할 수 있습니다. 예를 들어 코드 검토, 테스트, 보안, 문서화 등이 있습니다.
 
 <img src="images/hiring-specialists-analogy.png" alt="Hiring Specialists Analogy - Just as you call specialized tradespeople for house repairs, AI agents are specialized for specific tasks like code review, testing, security, and documentation" width="800" />
 
 ---
 
-# Using Agents
+# 에이전트 사용하기
 
-Get started with built-in and custom agents right away.
+내장 에이전트와 사용자 지정 에이전트를 바로 시작해 보세요.
 
 ---
 
-## *New to Agents?* Start Here!
-Never used or made an agent? Here's all you need to know to get started for this course.
+## *에이전트가 처음이신가요?* 여기에서 시작하세요!
+에이전트를 사용해 본 적도, 만들어 본 적도 없으신가요? 이 강좌를 시작하는 데 필요한 모든 정보를 여기에서 확인하세요.
 
-1. **Try a *built-in* agent right now:**
-   ```bash
-   copilot
-   > /plan Add input validation for book year in the book app
-   ```
-   This invokes the Plan agent to create a step-by-step implementation plan.
+1. **내장 에이전트를 지금 바로 사용해 보세요:**
+```bash
+copilot
 
-2. **See one of our custom agent examples:** It's simple to define an agent's instructions, look at our provided [python-reviewer.agent.md](../.github/agents/python-reviewer.agent.md) file to see the pattern.
+> /plan 책 앱에 책 연도 입력 유효성 검사 추가
 
-3. **Understand the core concept:** Agents are like consulting a specialist instead of a generalist. A "frontend agent" will focus on accessibility and component patterns automatically, you don't have to remind it because it is already specified in the agent's instructions.
+```
+이 명령은 Plan 에이전트를 실행하여 단계별 구현 계획을 생성합니다.
 
+2. **사용자 지정 에이전트 예제를 살펴보세요:** 에이전트의 지침을 정의하는 것은 간단합니다. 제공된 [python-reviewer.agent.md](../.github/agents/python-reviewer.agent.md) 파일을 참조하여 패턴을 확인하세요.
 
-## Built-in Agents
+3. **핵심 개념을 이해하세요:** 에이전트는 일반적인 사람이 아닌 특정 분야의 전문가에게 자문을 구하는 것과 같습니다. "프런트엔드 에이전트"는 접근성과 컴포넌트 패턴에 자동으로 초점을 맞추므로, 에이전트의 지침에 이미 명시되어 있어 별도로 상기시켜줄 필요가 없습니다.
 
-**You've already used some built-in agents in Chapter 03 Development Workflow!**
-<br>`/plan` and `/review` are actually built-in agents. Now you know what's happening under the hood. Here's the full list:
+## 내장 에이전트
 
-| Agent | How to Invoke | What It Does |
+**3장 개발 워크플로에서 이미 몇 가지 내장 에이전트를 사용해 보셨습니다!**
+<br>`/plan`과 `/review`는 실제로 내장 에이전트입니다. 이제 내부적으로 어떤 일이 일어나는지 알게 되셨습니다. 전체 목록은 다음과 같습니다.
+
+| 에이전트 | 호출 방법 | 기능 |
 |-------|---------------|--------------|
-| **Plan** | `/plan` or `Shift+Tab` (cycle modes) | Creates step-by-step implementation plans before coding |
-| **Code-review** | `/review` | Reviews staged/unstaged changes with focused, actionable feedback |
-| **Init** | `/init` | Generates project configuration files (instructions, agents) |
-| **Explore** | *Automatic* | Used internally when you ask Copilot to explore or analyze the codebase |
-| **Task** | *Automatic* | Executes commands like tests, builds, lints, and dependency installs |
+| **계획** | `/plan` 또는 `Shift+Tab` (순환 모드) | 코딩 전에 단계별 구현 계획을 생성합니다. |
+| **코드 검토** | `/review` | 스테이징/스테이징되지 않은 변경 사항을 검토하고 실행 가능한 피드백을 제공합니다. |
+| **초기화** | `/init` | 프로젝트 구성 파일(지침, 에이전트)을 생성합니다. |
+| **탐색** | *자동* | Copilot에 코드베이스 탐색 또는 분석을 요청할 때 내부적으로 사용됩니다. |
+| **작업** | *자동* | 테스트, 빌드, 린트, 종속성 설치 등의 명령을 실행합니다.
 
 <br>
 
-**Built-in agents in action** - Examples of invoking Plan, Code-review, Explore, and Task
+**내장 에이전트 작동 예시** - 계획, 코드 검토, 탐색, 작업 실행 예시
 
 ```bash
 copilot
@@ -89,121 +90,121 @@ copilot
 > Explore how book data is loaded    # Uses Explore agent
 ```
 
-What about the Task Agent? It works behind the scenes to manage and track what is going on and to report back in a clean and clear format:
+태스크 에이전트는 어떨까요? 태스크 에이전트는 백그라운드에서 작동하여 진행 상황을 관리하고 추적하며, 다음과 같이 깔끔하고 명확한 형식으로 보고합니다.
 
-| Outcome | What You See |
+| 결과 | 표시되는 내용 |
 |---------|--------------|
-| ✅ **Success** | Brief summary (e.g., "All 247 tests passed", "Build succeeded") |
-| ❌ **Failure** | Full output with stack traces, compiler errors, and detailed logs |
+| ✅ **성공** | 간략한 요약 (예: "247개 테스트 모두 통과", "빌드 성공") |
+| ❌ **실패** | 스택 트레이스, 컴파일러 오류 및 자세한 로그를 포함한 전체 출력 |
 
-
-> 📚 **Official Documentation**: [GitHub Copilot CLI Agents](https://docs.github.com/copilot/how-tos/use-copilot-agents/use-copilot-cli#use-custom-agents)
+> 📚 **공식 문서**: [GitHub Copilot CLI 에이전트](https://docs.github.com/copilot/how-tos/use-copilot-agents/use-copilot-cli#use-custom-agents)
 
 ---
 
-# Adding Agents to Copilot CLI
+# Copilot CLI에 에이전트 추가
 
-You can simply define your own agents to be part of your workflow! Define once, then direct!
+워크플로우에 포함할 에이전트를 직접 정의할 수 있습니다! 한 번 정의하면 바로 사용할 수 있습니다!
 
 <img src="images/using-agents.png" alt="Four colorful AI robots standing together, each with different tools representing specialized agent capabilities" width="800"/>
 
-## 🗂️ Add your agents 
+## 🗂️ 에이전트 추가하기
 
-Agent files are markdown files with a `.agent.md` extension. They have two parts: YAML frontmatter (metadata) and markdown instructions.
+에이전트 파일은 `.agent.md` 확장자를 가진 마크다운 파일입니다. 에이전트 파일은 YAML 프론트매터(메타데이터)와 마크다운 명령어 두 부분으로 구성됩니다.
 
-> 💡 **New to YAML frontmatter?** It's a small block of settings at the top of the file, surrounded by `---` markers. YAML is just `key: value` pairs. The rest of the file is regular markdown.
+> 💡 **YAML 프론트매터가 처음이신가요?** 파일 맨 위에 `---` 태그로 둘러싸인 작은 설정 블록입니다. YAML은 `키: 값` 쌍으로 이루어져 있습니다. 파일의 나머지 부분은 일반 마크다운입니다.
 
-Here's a minimal agent:
+다음은 최소한의 에이전트 예시입니다.
 
 ```markdown
 ---
 name: my-reviewer
-description: Code reviewer focused on bugs and security issues
+description: 버그와 보안 문제에 집중한 코드 리뷰어입니다
 ---
 
 # Code Reviewer
 
-You are a code reviewer focused on finding bugs and security issues.
+당신은 버그와 보안 문제를 찾는 데 집중하는 코드 리뷰어입니다.
 
-When reviewing code, always check for:
-- SQL injection vulnerabilities
-- Missing error handling
-- Hardcoded secrets
+코드를 검토할 때는 항상 다음을 확인하세요.:
+- SQL 인젝션 취약점
+- 오류 처리 누락
+- 하드코딩된 비밀
 ```
 
-> 💡 **Required vs Optional**: The `description` field is required. Other fields like `name`, `tools`, and `model` are optional.
+> 💡 **필수 vs 선택**: `description` 필드는 필수입니다. `name`, `tools`, `model` 등의 필드는 선택 사항입니다.
 
-## Where to put agent files
+## 에이전트 파일 위치
 
-| Location | Scope | Best For |
+| 위치 | 범위 | 최적 사용처 |
 |----------|-------|----------|
-| `.github/agents/` | Project-specific | Team-shared agents with project conventions |
-| `~/.copilot/agents/` | Global (all projects) | Personal agents you use everywhere |
+| `.github/agents/` | 프로젝트별 | 프로젝트 규칙을 따르는 팀 공유 에이전트 |
+| `~/.copilot/agents/` | 전역 (모든 프로젝트) | 어디에서나 사용하는 개인 에이전트 |
 
-**This project includes sample agent files in the [.github/agents/](../.github/agents/) folder**. You can write your own, or customize the ones already provided.
+**이 프로젝트에는 `.github/agents/` 폴더에 샘플 에이전트 파일이 포함되어 있습니다.** 직접 에이전트 파일을 작성하거나 제공된 파일을 사용자 지정할 수 있습니다.
 
 <details>
-<summary>📂 See the sample agents in this course</summary>
+<summary>📂 이 과정에서 샘플 에이전트를 확인하세요</summary>
 
-| File | Description |
+| 파일 | 설명 |
 |------|-------------|
-| `hello-world.agent.md` | Minimal example - start here |
-| `python-reviewer.agent.md` | Python code quality reviewer |
-| `pytest-helper.agent.md` | Pytest testing specialist |
+| `hello-world.agent.md` | 최소 예제 - 여기서 시작하세요 |
+| `python-reviewer.agent.md` | Python 코드 품질 검토자 |
+| `pytest-helper.agent.md` | Pytest 테스트 전문가 |
 
 ```bash
-# Or copy one to your personal agents folder (available in every project)
+# 또는 개인 에이전트 폴더(모든 프로젝트에서 사용 가능)에 복사하세요.
 cp .github/agents/python-reviewer.agent.md ~/.copilot/agents/
 ```
 
-For more community agents, see [github/awesome-copilot](https://github.com/github/awesome-copilot)
+더 많은 커뮤니티 에이전트를 보려면 [github/awesome-copilot](https://github.com/github/awesome-copilot)을 참조하세요.
 
 </details>
 
 
-## 🚀 Two ways to use custom agents
+## 🚀 사용자 지정 상담원 사용 방법 두 가지
 
-### Interactive mode
-Inside interactive mode, list agents using `/agent` and select the agent to start working with. 
-Select an agent to continue your conversation with.
+### 대화형 모드
+대화형 모드에서 `/agent` 명령어를 사용하여 상담원 목록을 확인하고, 작업을 시작할 상담원을 선택합니다.
+
+대화를 계속할 상담원을 선택합니다.
 
 ```bash
 copilot
 > /agent
 ```
 
-To change to a different agent, or to return to default mode, use the `/agent` command again.
+다른 에이전트로 변경하거나 기본 모드로 되돌리려면 `/agent` 명령을 다시 사용하십시오.
 
-### Programmatic mode
+### 프로그래밍 방식 모드
 
-Launch straight into a new session with an agent.
+Agent와 바로 새 세션을 시작하세요.
 
 ```bash
 copilot --agent python-reviewer
 > Review @samples/book-app-project/books.py
 ```
 
-> 💡 **Switching agents**: You can switch to a different agent at any time by using `/agent` or `--agent` again. To return to the standard Copilot CLI experience, use `/agent` and select **no agent**.
+> 💡**에이전트 전환**: `/agent` 또는 `--agent`를 다시 사용하여 언제든지 다른 에이전트로 전환할 수 있습니다. 표준 Copilot CLI 환경으로 돌아가려면 `/agent`를 사용하고 **에이전트 없음**을 선택하십시오.
 
 ---
 
-# Going Deeper with Agents
+# 에이전트와 더 깊이 소통하기
 
 <img src="images/creating-custom-agents.png" alt="Robot being assembled on a workbench surrounded by components and tools representing custom agent creation" width="800"/>
 
-> 💡 **This section is optional.** The built-in agents (`/plan`, `/review`) are powerful enough for most workflows. Create custom agents when you need specialized expertise that's consistently applied across your work.
+> 💡 **이 섹션은 선택 사항입니다.** 내장 에이전트(`/plan`, `/review`)는 대부분의 워크플로에 충분히 강력합니다. 작업 전반에 걸쳐 일관되게 적용되는 전문적인 지식이 필요한 경우 사용자 지정 에이전트를 생성하세요.
 
-Each topic below is self-contained. **Pick what interests you - you don't need to read them all at once.**
+아래 각 항목은 독립적입니다. **관심 있는 항목만 선택하세요. 한 번에 모두 읽을 필요는 없습니다.**
 
-| I want to... | Jump to |
+| 지금 하고 싶은 것... | 바로가기 |
 |---|---|
-| See why agents beat generic prompts | [Specialist vs Generic](#specialist-vs-generic-see-the-difference) |
-| Combine agents on a feature | [Working with Multiple Agents](#working-with-multiple-agents) |
-| Organize, name, and share agents | [Organizing & Sharing Agents](#organizing--sharing-agents) |
-| Set up always-on project context | [Configuring Your Project for Copilot](#configuring-your-project-for-copilot) |
-| Look up YAML properties and tools | [Agent File Reference](#agent-file-reference) |
+| 에이전트가 일반 프롬프트보다 나은 이유 알아보기 | [전문가 vs 일반](#specialist-vs-generic-see-the-difference) |
+| 기능에 에이전트 결합하기 | [여러 에이전트 사용](#working-with-multiple-agents) |
+| 에이전트 구성, 이름 지정 및 공유하기 | [에이전트 구성 및 공유](#organizing--sharing-agents) |
+| 상시 작동 프로젝트 컨텍스트 설정하기 | [Copilot용 프로젝트 구성](#configuring-your-project-for-copilot) |
+| YAML 속성 및 도구 찾아보기 | [에이전트 파일 참조](#agent-file-reference) |
 
-Select a scenario below to expand it.
+아래 시나리오를 선택하여 자세히 살펴보세요.
 
 ---
 
@@ -537,15 +538,15 @@ For community agents, see [github/awesome-copilot](https://github.com/github/awe
 
 ---
 
-# Practice
+# 연습
 
-<img src="../images/practice.png" alt="Warm desk setup with monitor showing code, lamp, coffee cup, and headphones ready for hands-on practice" width="800"/>
+<img src="../images/practice.png" alt="코드가 표시되는 모니터, 램프, 커피잔, 헤드폰이 갖춰진 편안한 책상 환경" width="800"/>
 
-Create your own agents and see them in action.
+나만의 에이전트를 만들고 실제로 작동하는 모습을 확인해 보세요.
 
 ---
 
-## ▶️ Try It Yourself
+## ▶️ 직접 시도해 보세요
 
 ```bash
 
@@ -605,24 +606,30 @@ copilot
 
 ---
 
-## 📝 Assignment
+## 📝 과제
 
-### Main Challenge: Build a Specialized Agent Team
+### 주요 과제: 전문 에이전트 팀 구축
 
-The hands-on example created `reviewer` and `documentor` agents. Now practice creating and using agents for a different task - improving data validation in the book app:
+실습 예제에서는 `검토자` 및 `문서 작성자` 에이전트를 생성했습니다. 이제 다른 작업을 위해 에이전트를 만들고 사용하는 연습을 해보세요. 바로 도서 앱의 데이터 유효성 검사를 개선하는 것입니다.
 
-1. Create 3 agent files (`.agent.md`) tailored to the book app, one per agent, placed in `.github/agents/`
-2. Your agents:
-   - **data-validator**: checks `data.json` for missing or malformed data (empty authors, year=0, missing fields)
-   - **error-handler**: reviews Python code for inconsistent error handling and suggests a unified approach
-   - **doc-writer**: generates or updates docstrings and README content
-3. Use each agent on the book app:
-   - `data-validator` → audit `@samples/book-app-project/data.json`
-   - `error-handler` → review `@samples/book-app-project/books.py` and `@samples/book-app-project/utils.py`
-   - `doc-writer` → add docstrings to `@samples/book-app-project/books.py`
-4. Collaborate: use `error-handler` to identify error-handling gaps, then `doc-writer` to document the improved approach
+1. 도서 앱에 맞게 에이전트 파일 3개(각 에이전트당 1개씩, 총 3개)를 생성하여 `.github/agents/` 폴더에 배치합니다.
+2. 에이전트:
 
-**Success criteria**: You have 3 working agents that produce consistent, high-quality output and you can switch between them with `/agent`.
+- **데이터 유효성 검사기**: `data.json` 파일에서 누락되거나 형식이 잘못된 데이터(저자 필드가 비어 있거나, 연도가 0이거나, 필드가 누락된 경우 등)를 검사합니다.
+
+- **오류 처리기**: 일관성 없는 오류 처리를 보이는 Python 코드를 검토하고 통일된 접근 방식을 제안합니다.
+
+- **문서 작성기**: 문서 문자열과 README 파일 내용을 생성하거나 업데이트합니다.
+3. 도서 앱에서 각 에이전트를 사용합니다.
+
+- `데이터 유효성 검사기` → `@samples/book-app-project/data.json` 파일 감사
+
+- `오류 처리기` → `@samples/book-app-project/books.py` 및 `@samples/book-app-project/utils.py` 파일 검토
+
+- `문서 작성기` → 문서 문자열 추가 `@samples/book-app-project/books.py`
+4. 협업: `error-handler`를 사용하여 오류 처리의 부족한 부분을 파악한 다음, `doc-writer`를 사용하여 개선된 접근 방식을 문서화합니다.
+
+**성공 기준**: 일관되고 고품질의 출력을 생성하는 3개의 에이전트가 있으며, `/agent`를 사용하여 에이전트 간에 전환할 수 있습니다.
 
 <details>
 <summary>💡 Hints (click to expand)</summary>
@@ -690,16 +697,16 @@ copilot
 
 </details>
 
-### Bonus Challenge: Instruction Library
+### 보너스 과제: 명령어 라이브러리
 
-You've built agents you invoke on demand. Now try the other side: **instruction files** that Copilot reads automatically in every session, no `/agent` needed.
+이미 필요에 따라 호출하는 에이전트를 구축했습니다. 이제 그 반대, 즉 Copilot이 매 세션마다 자동으로 읽는 **명령어 파일**을 만들어 보세요. `/agent` 명령어는 필요하지 않습니다.
 
-Create a `.github/instructions/` folder with at least 3 instruction files:
-- `python-style.instructions.md` for enforcing PEP 8 and type hint conventions
-- `test-standards.instructions.md` for enforcing pytest conventions in test files
-- `data-quality.instructions.md` for validating JSON data entries
+`.github/instructions/` 폴더에 다음 명령어 파일을 최소 3개 이상 생성하세요.
+- `python-style.instructions.md`: PEP 8 및 타입 힌트 규칙 준수
+- `test-standards.instructions.md`: 테스트 파일에서 pytest 규칙 준수
+- `data-quality.instructions.md`: JSON 데이터 항목 유효성 검사
 
-Test each instruction file on the book app code.
+각 명령어 파일을 도서 앱 코드에 적용하여 테스트하세요.
 
 ---
 
@@ -751,33 +758,33 @@ copilot  # This loads custom instructions by default
 
 ---
 
-# Summary
+# 요약
 
-## 🔑 Key Takeaways
+## 🔑 핵심 요점
 
-1. **Built-in agents**: `/plan` and `/review` are directly invoked; Explore and Task work automatically
-2. **Custom agents** are specialists defined in `.agent.md` files
-3. **Good agents** have clear expertise, standards, and output formats
-4. **Multi-agent collaboration** solves complex problems by combining expertise
-5. **Instruction files** (`.instructions.md`) encode team standards for automatic application
-6. **Consistent output** comes from well-defined agent instructions
+1. **내장 에이전트**: `/plan` 및 `/review`가 직접 호출됩니다. 탐색 및 작업은 자동으로 수행됩니다.
+2. **사용자 지정 에이전트**는 `.agent.md` 파일에 정의된 전문가입니다.
+3. **우수한 에이전트**는 명확한 전문성, 표준 및 출력 형식을 갖추고 있습니다.
+4. **다중 에이전트 협업**은 전문성을 결합하여 복잡한 문제를 해결합니다.
+5. **지침 파일**(`.instructions.md`)은 자동 적용을 위한 팀 표준을 인코딩합니다.
+6. **일관된 출력**은 잘 정의된 에이전트 지침에서 비롯됩니다.
 
-> 📋 **Quick Reference**: See the [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference) for a complete list of commands and shortcuts.
-
----
-
-## ➡️ What's Next
-
-Agents change *how Copilot approaches and takes targeted actions* in your code. Next, you'll learn about **skills** - which change *what steps* it follows. Wondering how agents and skills differ? Chapter 05 covers that head-on.
-
-In **[Chapter 05: Skills System](../05-skills/README.md)**, you'll learn:
-
-- How skills auto-trigger from your prompts (no slash command needed)
-- Installing community skills
-- Creating custom skills with SKILL.md files
-- The difference between agents, skills, and MCP
-- When to use each one
+> 📋 **빠른 참조**: 전체 명령 및 바로 가기 목록은 [GitHub Copilot CLI 명령 참조](https://docs.github.com/en/copilot/reference/cli-command-reference)를 참조하세요.
 
 ---
 
-**[← Back to Chapter 03](../03-development-workflows/README.md)** | **[Continue to Chapter 05 →](../05-skills/README.md)**
+## ➡️ 다음 단계
+
+에이전트는 Copilot이 코드에서 특정 작업을 수행하는 방식(*어떻게 접근하고 실행하는지*)을 변경합니다. 다음으로는 Copilot이 따르는 단계(*어떤 단계를 따르는지*)를 변경하는 **스킬**에 대해 알아보겠습니다. 에이전트와 스킬의 차이점이 궁금하신가요? 5장에서 자세히 다룹니다.
+
+**[5장: 스킬 시스템](../05-skills/README.md)**에서는 다음 내용을 학습합니다.
+
+- 프롬프트에서 스킬이 자동으로 실행되는 방법(슬래시 명령 필요 없음)
+- 커뮤니티 스킬 설치
+- SKILL.md 파일을 사용하여 사용자 지정 스킬 생성
+- 에이전트, 스킬, MCP의 차이점
+- 각각을 사용해야 하는 시점
+
+---
+
+**[← 3장으로 돌아가기](../03-development-workflows/README.md)** | **[5장으로 계속 →](../05-skills/README.md)**
