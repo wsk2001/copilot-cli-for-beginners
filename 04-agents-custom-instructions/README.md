@@ -210,18 +210,18 @@ copilot --agent python-reviewer
 
 <a id="specialist-vs-generic-see-the-difference"></a>
 <details>
-<summary><strong>Specialist vs Generic: See the Difference</strong> - Why agents produce better output than generic prompts</summary>
+<summary><strong>Specialist vs Generic: 차이점을 알아보세요</strong> - 에이전트가 일반 프롬프트보다 더 나은 결과를 생성하는 이유는 무엇일까요?</summary>
 
-## Specialist vs Generic: See the Difference
+## Specialist vs Generic: 차이점을 확인해 보세요
 
-This is where agents prove their value. Watch the difference:
+바로 이 지점에서 에이전트의 진가가 드러납니다. 차이를 직접 확인해 보세요:
 
-### Without an Agent (Generic Copilot)
+### 에이전트 없이 (Generic Copilot)
 
 ```bash
 copilot
 
-> Add a function to search books by year range in the book app
+> 도서 앱에서 연도별 검색 기능을 추가하세요
 ```
 
 **Generic output**:
@@ -234,19 +234,19 @@ def search_by_year_range(books, start_year, end_year):
     return results
 ```
 
-Basic. Works. But missing a lot.
+기본적인 것. 효과가 있어요. 하지만 많은 부분을 놓치고 있습니다.
 
 ---
 
-### With the Python Reviewer Agent
+### 파이썬 리뷰어 에이전트와 함께할 때
 
 ```bash
 copilot
 
 > /agent
-# Select "python-reviewer"
+# "python-reviewer"를 선택하세요
 
-> Add a function to search books by year range in the book app
+> 도서 앱에서 연도별로 책을 검색하는 기능을 추가하세요
 ```
 
 **Specialist output**:
@@ -286,16 +286,16 @@ def search_by_year_range(
     ]
 ```
 
-**What the python-reviewer agent automatically includes**:
-- ✅ Type hints on all parameters and return values
-- ✅ Comprehensive docstring with Args/Returns/Raises
-- ✅ Input validation with proper error handling
-- ✅ List comprehension for better performance
-- ✅ Edge case handling (missing/invalid year values)
-- ✅ PEP 8 compliant formatting
-- ✅ Defensive programming practices
+**python-reviewer 에이전트가 자동으로 포함하는 기능**:
+- ✅ 모든 매개변수 및 반환 값에 대한 타입 힌트
+- ✅ Args/Returns/Raises를 포함한 포괄적인 docstring
+- ✅ 적절한 오류 처리를 포함한 입력 유효성 검사
+- ✅ 성능 향상을 위한 리스트 컴프리헨션
+- ✅ 예외 처리 (누락되거나 유효하지 않은 연도 값)
+- ✅ PEP 8 준수 형식
+- ✅ 방어적 프로그래밍 방식
 
-**The difference**: Same prompt, dramatically better output. The agent brings expertise you'd forget to ask for.
+**차이점**: 동일한 프롬프트에서 훨씬 더 나은 출력 결과를 제공합니다. 에이전트는 사용자가 미처 요청하지 못했을 수도 있는 전문적인 정보를 제공합니다.
 
 </details>
 
