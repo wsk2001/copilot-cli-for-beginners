@@ -1,128 +1,101 @@
-# Contributor Covenant Code of Conduct
+# 기여자 서약 행동 강령
 
-## Our Pledge
+## 우리의 약속
 
-We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone, regardless of age, body
-size, visible or invisible disability, ethnicity, sex characteristics, gender
-identity and expression, level of experience, education, socio-economic status,
-nationality, personal appearance, race, religion, or sexual identity
-and orientation.
+회원, 기여자, 그리고 리더로서 우리는 모든 사람이 나이, 체형,
+장애(유형 또는 비가시적), 인종, 성별, 성 정체성 및 표현, 경험 수준, 교육 수준, 사회경제적 지위,
+국적, 외모, 인종, 종교 또는 성적 정체성 및 성적 지향에 관계없이 괴롭힘 없는 환경에서 커뮤니티에 참여할 수 있도록 최선을 다할 것을 약속합니다.
 
-We pledge to act and interact in ways that contribute to an open, welcoming,
-diverse, inclusive, and healthy community.
+우리는 개방적이고, 포용적이며, 다양하고, 포용적이며, 건강한 커뮤니티를 만드는 데 기여하는 방식으로 행동하고 소통할 것을 약속합니다.
 
-## Our Standards
+## 우리의 기준
 
-Examples of behavior that contributes to a positive environment for our
-community include:
+긍정적인 커뮤니티 환경 조성에 기여하는 행동의 예는 다음과 같습니다.
 
-* Demonstrating empathy and kindness toward other people
-* Being respectful of differing opinions, viewpoints, and experiences
-* Giving and gracefully accepting constructive feedback
-* Accepting responsibility and apologizing to those affected by our mistakes,
-  and learning from the experience
-* Focusing on what is best not just for us as individuals, but for the
-  overall community
+* 다른 사람에 대한 공감과 친절을 보여주는 것
+* 서로 다른 의견, 관점, 경험을 존중하는 것
+* 건설적인 피드백을 주고받고 겸허하게 수용하는 것
+* 자신의 실수로 피해를 입은 사람들에게 책임을 인정하고 사과하며,
+그 경험에서 배우는 것
+* 개인뿐 아니라 커뮤니티 전체를 위해 최선을 다하는 것
 
-Examples of unacceptable behavior include:
+용납할 수 없는 행동의 예는 다음과 같습니다.
 
-* The use of sexualized language or imagery, and sexual attention or
-  advances of any kind
-* Trolling, insulting or derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or email
-  address, without their explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
-  professional setting
+* 성적인 언어나 이미지 사용, 성적인 관심이나
+접근 시도
+* 트롤링, 모욕적이거나 비하적인 댓글, 개인적 또는 정치적 공격
+* 공개적 또는 사적인 괴롭힘
+* 타인의 개인 정보(예: 실명 또는 이메일 주소)를 명시적인 허가 없이 공개하는 것
+* 전문적인 환경에서 부적절하다고 합리적으로 간주될 수 있는 기타 행동
 
-## Enforcement Responsibilities
+## 시행 책임
 
-Community leaders are responsible for clarifying and enforcing our standards of
-acceptable behavior and will take appropriate and fair corrective action in
-response to any behavior that they deem inappropriate, threatening, offensive,
-or harmful.
+커뮤니티 리더는 다음 사항을 명확히 하고 시행할 책임이 있습니다. 저희는 허용 가능한 행동 기준을 정하고 있으며, 부적절하거나, 위협적이거나, 모욕적이거나, 유해하다고 판단되는 모든 행동에 대해 적절하고 공정한 시정 조치를 취할 것입니다.
 
-Community leaders have the right and responsibility to remove, edit, or reject
-comments, commits, code, wiki edits, issues, and other contributions that are
-not aligned to this Code of Conduct, and will communicate reasons for moderation
-decisions when appropriate.
+커뮤니티 리더는 본 행동 강령에 부합하지 않는 댓글, 커밋, 코드, 위키 편집, 이슈 및 기타 기여물을 삭제, 수정 또는 거부할 권리와 책임이 있으며, 적절한 경우 중재 결정 사유를 공지할 것입니다.
 
-## Scope
+## 적용 범위
 
-This Code of Conduct applies within all community spaces, and also applies when
-an individual is officially representing the community in public spaces.
-Examples of representing our community include using an official e-mail address,
-posting via an official social media account, or acting as an appointed
-representative at an online or offline event.
+본 행동 강령은 모든 커뮤니티 공간에 적용되며, 개인이 공식적으로 커뮤니티를 대표하는 경우에도 적용됩니다.
 
-## Enforcement
+커뮤니티를 대표하는 예로는 공식 이메일 주소 사용, 공식 소셜 미디어 계정 게시, 온라인 또는 오프라인 행사에서 임명된 대표자 활동 등이 있습니다.
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-GitHub.
-All complaints will be reviewed and investigated promptly and fairly.
+## 시행
 
-All community leaders are obligated to respect the privacy and security of the
-reporter of any incident.
+남용, 괴롭힘 또는 기타 용납할 수 없는 행동은 GitHub의 시행 담당 커뮤니티 리더에게 신고할 수 있습니다.
 
-## Enforcement Guidelines
+모든 신고는 신속하고 공정하게 검토 및 조사됩니다.
 
-Community leaders will follow these Community Impact Guidelines in determining
-the consequences for any action they deem in violation of this Code of Conduct:
+모든 커뮤니티 리더는 사건 신고자의 사생활과 보안을 존중할 의무가 있습니다.
 
-### 1. Correction
+## 시행 지침
 
-**Community Impact**: Use of inappropriate language or other behavior deemed
-unprofessional or unwelcome in the community.
+커뮤니티 리더는 다음 커뮤니티 영향 지침을 따라 본 행동 강령을 위반하는 행위에 대한 결과를 결정합니다.
 
-**Consequence**: A private, written warning from community leaders, providing
-clarity around the nature of the violation and an explanation of why the
-behavior was inappropriate. A public apology may be requested.
+### 1. 시정
 
-### 2. Warning
+**커뮤니티 영향**: 부적절한 언어 사용 또는 커뮤니티에서 전문적이지 않거나 바람직하지 않다고 여겨지는 기타 행동.
 
-**Community Impact**: A violation through a single incident or series
-of actions.
+**결과**: 커뮤니티 리더가 위반 행위의 성격과 해당 행동이 부적절했던 이유를 명확히 설명하는 비공개 서면 경고를 발송합니다.
 
-**Consequence**: A warning with consequences for continued behavior. No
-interaction with the people involved, including unsolicited interaction with
-those enforcing the Code of Conduct, for a specified period of time. This
-includes avoiding interactions in community spaces as well as external channels
-like social media. Violating these terms may lead to a temporary or
-permanent ban.
+공개 사과를 요청할 수 있습니다.
 
-### 3. Temporary Ban
+### 2. 경고
 
-**Community Impact**: A serious violation of community standards, including
-sustained inappropriate behavior.
+**커뮤니티 영향**: 단일 사건 또는 일련의 행동을 통한 위반.
 
-**Consequence**: A temporary ban from any sort of interaction or public
-communication with the community for a specified period of time. No public or
-private interaction with the people involved, including unsolicited interaction
-with those enforcing the Code of Conduct, is allowed during this period.
-Violating these terms may lead to a permanent ban.
+**결과**: 경고와 함께, 위반 행위가 지속될 경우 그에 따른 결과가 부과됩니다. 지정된 기간 동안 관련자들과의 모든 상호 작용이 금지됩니다. 여기에는 행동 강령을 집행하는 사람과의 원치 않는 상호 작용도 포함됩니다.
+이는 커뮤니티 공간뿐 아니라 소셜 미디어와 같은 외부 채널에서의 상호 작용도 금지하는 것을 의미합니다.
+이러한 조건을 위반할 경우 일시적 또는 영구적 차단 조치가 취해질 수 있습니다.
 
-### 4. Permanent Ban
+### 3. 일시적 차단
 
-**Community Impact**: Demonstrating a pattern of violation of community
-standards, including sustained inappropriate behavior,  harassment of an
-individual, or aggression toward or disparagement of classes of individuals.
+**커뮤니티 영향**: 커뮤니티 기준을 심각하게 위반한 경우(지속적인 부적절한 행동 포함)
 
-**Consequence**: A permanent ban from any sort of public interaction within
-the community.
+**결과**: 지정된 기간 동안 커뮤니티와의 모든 종류의 상호 작용 또는 공개적인 소통이 일시적으로 금지됩니다.
+이 기간 동안 관련자들과의 공개적 또는 비공개적 상호 작용은 허용되지 않으며, 행동 ​​강령을 집행하는 사람과의 원치 않는 상호 작용도 포함됩니다.
 
-## Attribution
+이러한 조건을 위반할 경우 영구적 차단 조치가 취해질 수 있습니다.
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage],
-version 2.0, available at
-https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
+### 4. 영구 차단
 
-Community Impact Guidelines were inspired by [Mozilla's code of conduct
-enforcement ladder](https://github.com/mozilla/diversity).
+**커뮤니티 영향**: 커뮤니티 기준을 반복적으로 위반하는 경우,
+부적절한 행동 지속, 개인에 대한 괴롭힘,
+또는 특정 집단에 대한 공격이나 비방 등이 포함됩니다.
 
-[homepage]: https://www.contributor-covenant.org
+**결과**: 커뮤니티 내 모든 공개적인 활동에 대한 영구 차단
 
-For answers to common questions about this code of conduct, see the FAQ at
-https://www.contributor-covenant.org/faq. Translations are available at
+
+## 출처
+
+본 행동 강령은 [기여자 규약][홈페이지],
+버전 2.0(https://www.contributor-covenant.org/version/2/0/code_of_conduct.html)을 기반으로 작성되었습니다.
+
+커뮤니티 영향 가이드라인은 [모질라 행동 강령
+시행 단계](https://github.com/mozilla/diversity)에서 영감을 받았습니다.
+
+[홈페이지]: https://www.contributor-covenant.org/version/2/0/code_of_conduct.html
+
+본 행동 강령에 대한 일반적인 질문에 대한 답변은 FAQ에서 확인하실 수 있습니다.
+https://www.contributor-covenant.org/faq. 번역본은 다음 링크에서 확인하실 수 있습니다.
 https://www.contributor-covenant.org/translations.
