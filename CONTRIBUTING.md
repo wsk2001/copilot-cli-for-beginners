@@ -1,10 +1,10 @@
-## Contributing
+## 기여하기
 
-[fork]: https://github.com/github/REPO/fork
-[pr]: https://github.com/github/REPO/compare
+[포크]: https://github.com/github/REPO/fork
+[프러포]: https://github.com/github/REPO/compare
 
-Hi there! We're thrilled that you'd like to contribute to this project. Your help is essential for keeping it great.
+안녕하세요! 이 프로젝트에 기여해 주셔서 정말 기쁩니다. 여러분의 도움은 이 프로젝트를 훌륭하게 유지하는 데 매우 중요합니다.
 
-Contributions to this project are [released](https://help.github.com/articles/github-terms-of-service/#6-contributions-under-repository-license) to the public under the [project's open source license](LICENSE.txt).
+이 프로젝트에 대한 기여는 [프로젝트의 오픈 소스 라이선스](LICENSE.txt)에 따라 공개적으로 배포됩니다.
 
-Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+이 프로젝트는 [기여자 행동 강령](CODE_OF_CONDUCT.md)과 함께 배포됩니다. 이 프로젝트에 참여함으로써 여러분은 해당 강령의 조항을 준수하는 데 동의하는 것입니다.
