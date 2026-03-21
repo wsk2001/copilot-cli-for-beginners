@@ -1,45 +1,44 @@
 ![Chapter 06: MCP Servers](images/chapter-header.png)
 
-> **What if Copilot could read your GitHub issues, check your database, and create PRs... all from the terminal?**
+> **만약 Copilot이 터미널에서 GitHub 이슈를 읽고, 데이터베이스를 확인하고, PR을 생성할 수 있다면 어떨까요?**
 
-So far, Copilot can only work with what you give it directly: files you reference with `@`, conversation history, and its own training data. But what if it could reach out on its own to check your GitHub repository, browse your project files, or look up the latest documentation for a library?
+현재 Copilot은 사용자가 직접 제공하는 데이터, 즉 `@`로 참조하는 파일, 대화 기록, 그리고 자체 학습 데이터만을 활용할 수 있습니다. 하지만 Copilot이 스스로 GitHub 저장소를 확인하고, 프로젝트 파일을 탐색하거나, 라이브러리의 최신 문서를 찾아볼 수 있다면 어떨까요?
 
-That's what MCP (Model Context Protocol) does. It's a way to connect Copilot to external services so it has access to live, real-world data. Each service Copilot connects to is called an "MCP server." In this chapter, you'll set up a few of these connections and see how they make Copilot dramatically more useful.
+MCP(Model Context Protocol)는 바로 그런 역할을 합니다. MCP를 통해 Copilot은 외부 서비스에 연결하여 실시간 실제 데이터에 접근할 수 있습니다. Copilot이 연결하는 각 서비스를 "MCP 서버"라고 합니다. 이 장에서는 이러한 연결을 몇 가지 설정하고 이를 통해 Copilot의 활용도가 얼마나 크게 향상되는지 살펴보겠습니다.
 
-> 💡 **Already familiar with MCP?** [Jump to the quick start](#-use-the-built-in-github-mcp) to confirm it's working and start configuring servers.
+> 💡 **MCP를 이미 사용해 보셨나요?** [빠른 시작 가이드](#-use-the-built-in-github-mcp)로 이동하여 작동 여부를 확인하고 서버 구성을 시작하세요.
 
-## 🎯 Learning Objectives
+## 🎯 학습 목표
 
-By the end of this chapter, you'll be able to:
+이 장을 마치면 다음을 수행할 수 있게 됩니다.
 
-- Understand what MCP is and why it matters
-- Manage MCP servers using `/mcp` commands
-- Configure MCP servers for GitHub, filesystem, and documentation
-- Use MCP-powered workflows with the book app project
-- Know when and how to build a custom MCP server (optional)
+- MCP가 무엇이며 왜 중요한지 이해합니다.
+- `/mcp` 명령어를 사용하여 MCP 서버를 관리합니다.
+- GitHub, 파일 시스템 및 문서에 대한 MCP 서버를 구성합니다.
+- 책 앱 ​​프로젝트에서 MCP 기반 워크플로를 사용합니다.
+- 사용자 지정 MCP 서버를 구축해야 하는 시점과 방법을 압니다(선택 사항).
 
-> ⏱️ **Estimated Time**: ~50 minutes (15 min reading + 35 min hands-on)
+> ⏱️ **예상 소요 시간**: 약 50분 (읽기 15분 + 실습 35분)
 
 ---
 
-## 🧩 Real-World Analogy: Browser Extensions
+## 🧩 실제 사례: 브라우저 확장 프로그램
 
 <img src="images/browser-extensions-analogy.png" alt="MCP Servers are like Browser Extensions" width="800"/>
 
-Think of MCP servers like browser extensions. Your browser on its own can display web pages, but extensions connect it to extra services:
+MCP 서버를 브라우저 확장 프로그램과 비슷하게 생각해 보세요. 브라우저 자체는 웹 페이지를 표시할 수 있지만, 확장 프로그램은 브라우저를 추가 서비스에 연결해 줍니다.
 
-| Browser Extension | What It Connects To | MCP Equivalent |
-|-------------------|---------------------|----------------|
-| Password manager | Your password vault | **GitHub MCP** → your repos, issues, PRs |
-| Grammarly | Writing analysis service | **Context7 MCP** → library documentation |
-| File manager | Cloud storage | **Filesystem MCP** → local project files |
+| 브라우저 확장 프로그램 | 연결 대상 | MCP와 유사한 기능 |
+-------------------|---------------------|----------------|
+| 비밀번호 관리자 | 비밀번호 보관소 | **GitHub MCP** → 저장소, 이슈, PR |
+| Grammarly | 글쓰기 분석 서비스 | **Context7 MCP** → 라이브러리 문서 관리 |
+| 파일 관리자 | 클라우드 스토리지 | **파일 시스템 MCP** → 로컬 프로젝트 파일 |
 
-Without extensions, your browser is still useful, but with them, it becomes a powerhouse. MCP servers do the same for Copilot. They connect it to real, live data sources so it can read your GitHub issues, explore your file system, fetch up-to-date documentation, and more.
+확장 프로그램이 없어도 브라우저는 여전히 유용하지만, 확장 프로그램을 사용하면 강력한 도구로 거듭납니다. MCP 서버는 Copilot에도 똑같은 역할을 합니다. MCP 서버는 Copilot을 실제 데이터 소스에 연결하여 GitHub 이슈를 읽고, 파일 시스템을 탐색하고, 최신 문서를 가져오는 등 다양한 작업을 수행할 수 있도록 지원합니다.
 
-***MCP servers connect Copilot to the outside world: GitHub, repositories, documentation, and more***
+***MCP 서버는 Copilot을 외부 세계(GitHub, 저장소, 문서 등)에 연결합니다.***
 
-> 💡 **Key insight**: Without MCP, Copilot can only see files you explicitly share with `@`. With MCP, it can proactively explore your project, check your GitHub repo, and look up documentation, all automatically.
-
+> 💡 **핵심 정보**: MCP가 없으면 Copilot은 `@`로 명시적으로 공유한 파일만 볼 수 있습니다. MCP를 사용하면 Copilot은 프로젝트를 능동적으로 탐색하고, GitHub 저장소를 확인하고, 문서를 검색하는 등의 모든 작업을 자동으로 수행할 수 있습니다.
 ---
 
 <img src="images/quick-start-mcp.png" alt="Power cable connecting with bright electrical spark surrounded by floating tech icons representing MCP server connections" width="800"/>
