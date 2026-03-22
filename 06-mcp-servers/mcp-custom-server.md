@@ -1,19 +1,19 @@
-# Building a Custom MCP Server
+# 사용자 지정 MCP 서버 구축
 
-> ⚠️ **This content is completely optional.** You can be highly productive with Copilot CLI using only the pre-built MCP servers (GitHub, filesystem, Context7). This guide is for developers who want to connect Copilot to custom internal APIs. See the [MCP for Beginners course](https://github.com/microsoft/mcp-for-beginners) for more details.
->
-> **Prerequisites:**
-> - Comfortable with Python
-> - Understanding of `async`/`await` patterns
-> - `pip` available on your system (included in this dev container)
->
-> **[← Back to Chapter 06: MCP Servers](README.md)**
+> ⚠️ **이 내용은 선택 사항입니다.** 미리 구축된 MCP 서버(GitHub, 파일 시스템, Context7)만으로도 Copilot CLI를 충분히 활용할 수 있습니다. 이 가이드는 Copilot을 사용자 지정 내부 API에 연결하려는 개발자를 위한 것입니다. 자세한 내용은 [MCP 초보자 과정](https://github.com/microsoft/mcp-for-beginners)을 참조하세요.
 
+>
+> **필수 조건:**
+> - Python에 대한 기본적인 이해
+> - `async`/`await` 패턴에 대한 이해
+> - 시스템에 `pip` 설치 (개발 컨테이너에 포함됨)
+>
+> **[← 6장: MCP 서버로 돌아가기](README.md)**
 ---
 
-Want to connect Copilot to your own APIs? Here's how to build a simple MCP server in Python that looks up book information, tying back to the book app project you've been using throughout this course.
+Copilot을 자체 API에 연결하고 싶으신가요? 이 강좌에서 사용해 온 도서 앱 프로젝트와 연동하여 도서 정보를 조회하는 간단한 MCP 서버를 Python으로 구축하는 방법을 소개합니다.
 
-## Project Setup
+## 프로젝트 설정
 
 ```bash
 mkdir book-lookup-mcp-server
@@ -21,11 +21,11 @@ cd book-lookup-mcp-server
 pip install mcp
 ```
 
-> 💡 **What is the `mcp` package?** It's the official Python SDK for building MCP servers. It handles the protocol details so you can focus on your tools.
+> 💡 **`mcp` 패키지란 무엇인가요?** MCP 서버 구축을 위한 공식 Python SDK입니다. 프로토콜 관련 세부 사항은 패키지에서 처리하므로 개발자는 도구 개발에 집중할 수 있습니다.
 
-## Server Implementation
+## 서버 구현
 
-Create a file called `server.py`:
+`server.py`라는 파일을 생성하세요.
 
 ```python
 # server.py
@@ -96,20 +96,20 @@ if __name__ == "__main__":
     mcp.run()
 ```
 
-**What's happening here:**
+**여기서 무슨 일이 일어나고 있나요?**
 
-| Part | What It Does |
+| 파트 | 기능 |
 |------|-------------|
-| `FastMCP("book-lookup")` | Creates a server named "book-lookup" |
-| `@mcp.tool()` | Registers a function as a tool Copilot can call |
-| Type hints + docstrings | Tell Copilot what each tool does and what parameters it needs |
-| `mcp.run()` | Starts the server and listens for requests |
+| `FastMCP("book-lookup")` | "book-lookup"이라는 이름의 서버를 생성합니다. |
+| `@mcp.tool()` | Copilot이 호출할 수 있는 도구로 함수를 등록합니다. |
+| 타입 힌트 + 독스트링 | 각 도구의 기능과 필요한 매개변수를 Copilot에 알려줍니다. |
+| `mcp.run()` | 서버를 시작하고 요청을 수신합니다. |
 
-> 💡 **Why decorators?** The `@mcp.tool()` decorator is all you need. The MCP SDK automatically reads your function's name, type hints, and docstring to generate the tool schema. No manual JSON schema needed!
+> 💡 **데코레이터를 사용하는 이유?** `@mcp.tool()` 데코레이터만 있으면 됩니다. MCP SDK는 함수의 이름, 타입 힌트, 독스트링을 자동으로 읽어 도구 스키마를 생성합니다. 수동으로 JSON 스키마를 작성할 필요가 없습니다!
 
-## Configuration
+## 설정
 
-Add to your `~/.copilot/mcp-config.json`:
+`~/.copilot/mcp-config.json` 파일에 다음을 추가하세요.
 
 ```json
 {
@@ -155,16 +155,16 @@ copilot
 [Shows all books in the database with ISBNs]
 ```
 
-## Next Steps
+## 다음 단계
 
-Once you've built a basic server, you can:
+기본 서버 구축이 완료되면 다음 작업을 수행할 수 있습니다.
 
-1. **Add more tools** - Each `@mcp.tool()` function becomes a tool Copilot can call
-2. **Connect real APIs** - Replace the mock `BOOKS_DB` with actual API calls or database queries
-3. **Add authentication** - Handle API keys and tokens securely
-4. **Share your server** - Publish to PyPI so others can install it with `pip`
+1. **도구 추가** - 각 `@mcp.tool()` 함수는 Copilot에서 호출할 수 있는 도구가 됩니다.
+2. **실제 API 연결** - 모의 `BOOKS_DB`를 실제 API 호출 또는 데이터베이스 쿼리로 교체합니다.
+3. **인증 추가** - API 키와 토큰을 안전하게 관리합니다.
+4. **서버 공유** - 다른 사용자가 `pip`으로 설치할 수 있도록 PyPI에 게시합니다.
 
-## Resources
+## 리소스
 
 - [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
