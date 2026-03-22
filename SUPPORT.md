@@ -1,11 +1,11 @@
-# Support
+# 지원
 
-## How to file issues and get help
+## 문제 보고 및 도움 요청 방법
 
-This project uses GitHub issues to track bugs and feature requests. Please search the existing issues before filing new issues to avoid duplicates. For new issues, file your bug or feature request as a new issue.
+이 프로젝트는 버그 및 기능 요청을 추적하기 위해 GitHub 이슈를 사용합니다. 중복을 방지하기 위해 새 이슈를 제출하기 전에 기존 이슈를 검색해 주세요. 새로운 이슈를 제출할 때는 버그 또는 기능 요청을 새 이슈로 등록해 주세요.
 
-For help or questions about using this project, please file an issue.
+이 프로젝트 사용에 대한 도움이나 질문이 있는 경우 이슈를 등록해 주세요.
 
-## GitHub Support Policy
+## GitHub 지원 정책
 
-Support for this project is limited to the resources listed above.
+이 프로젝트에 대한 지원은 위에 명시된 리소스로 제한됩니다.
