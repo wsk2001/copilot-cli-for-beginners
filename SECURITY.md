@@ -1,31 +1,38 @@
-Thanks for helping make GitHub safe for everyone.
+모두를 위한 안전한 GitHub 환경 조성에 도움을 주셔서 감사합니다.
 
-# Security
+# 보안
 
-GitHub takes the security of our software products and services seriously, including all of the open source code repositories managed through our GitHub organizations, such as [GitHub](https://github.com/GitHub).
+GitHub는 GitHub 조직을 통해 관리되는 모든 오픈 소스 코드 저장소(예: [GitHub](https://github.com/GitHub))를 포함하여 소프트웨어 제품 및 서비스의 보안을 중요하게 생각합니다.
 
-Even though [open source repositories are outside of the scope of our bug bounty program](https://bounty.github.com/index.html#scope) and therefore not eligible for bounty rewards, we will ensure that your finding gets passed along to the appropriate maintainers for remediation. 
+[오픈 소스 저장소는 버그 바운티 프로그램](https://bounty.github.com/index.html#scope)의 적용 범위에 포함되지 않으므로 바운티 보상 대상은 아니지만, 발견하신 내용은 해당 저장소 관리자에게 전달하여 수정 조치를 취하도록 하겠습니다.
 
-## Reporting Security Issues
+## 보안 문제 보고
 
-If you believe you have found a security vulnerability in any GitHub-owned repository, please report it to us through coordinated disclosure.
+GitHub 소유 저장소에서 보안 취약점을 발견했다고 생각되면, 협력적 공개 방식을 통해 보고해 주세요.
 
-**Please do not report security vulnerabilities through public GitHub issues, discussions, or pull requests.**
+**공개 GitHub 이슈, 토론 또는 풀 리퀘스트를 통해 보안 취약점을 보고하지 마세요.**
 
-Instead, please send an email to opensource-security[@]github.com.
+대신 opensource-security[@]github.com으로 이메일을 보내주세요.
 
-Please include as much of the information listed below as you can to help us better understand and resolve the issue:
 
-  * The type of issue (e.g., buffer overflow, SQL injection, or cross-site scripting)
-  * Full paths of source file(s) related to the manifestation of the issue
-  * The location of the affected source code (tag/branch/commit or direct URL)
-  * Any special configuration required to reproduce the issue
-  * Step-by-step instructions to reproduce the issue
-  * Proof-of-concept or exploit code (if possible)
-  * Impact of the issue, including how an attacker might exploit the issue
+문제를 더 잘 이해하고 해결하는 데 도움이 되도록 아래 정보를 최대한 자세히 포함해 주세요.
 
-This information will help us triage your report more quickly.
+* 문제 유형 (예: 버퍼 오버플로, SQL 인젝션, 크로스 사이트 스크립팅)
 
-## Policy
+* 문제 발생과 관련된 소스 파일의 전체 경로
 
-See [GitHub's Safe Harbor Policy](https://docs.github.com/en/site-policy/security-policies/github-bug-bounty-program-legal-safe-harbor#1-safe-harbor-terms)
+* 영향을 받는 소스 코드 위치 (태그/브랜치/커밋 또는 직접 URL)
+
+* 문제를 재현하는 데 필요한 특별 구성
+
+* 문제 재현 단계별 지침
+
+* 개념 증명 또는 익스플로잇 코드 (가능한 경우)
+
+* 공격자가 문제를 악용할 수 있는 방법을 포함한 문제의 영향
+
+이러한 정보는 보고서를 더 신속하게 분류하는 데 도움이 됩니다.
+
+## 정책
+
+[GitHub의 세이프 하버 정책](https://docs.github.com/en/site-policy/security-policies/github-bug-bounty-program-legal-safe-harbor#1-safe-harbor-terms)을 참조하세요.
