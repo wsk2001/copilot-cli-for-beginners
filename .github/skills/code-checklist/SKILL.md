@@ -1,49 +1,49 @@
 ---
-name: code-checklist
-description: Team code quality checklist - use for checking Python code quality, bugs, security issues, and best practices
+name: 코드 체크리스트
+description: 팀 코드 품질 체크리스트 - 파이썬 코드 품질, 버그, 보안 문제 및 모범 사례 점검에 사용
 ---
 
-# Code Checklist Skill
+# 코드 체크리스트 활용 팁
 
-Apply this checklist when checking Python code.
+파이썬 코드를 점검할 때 이 체크리스트를 활용하세요.
 
-## Code Quality Checklist
+## 코드 품질 체크리스트
 
-- [ ] All functions have type hints
-- [ ] No bare except clauses
-- [ ] No mutable default arguments
-- [ ] Context managers used for file I/O
-- [ ] Functions are under 50 lines
-- [ ] Variable and function names follow PEP 8 (snake_case)
+- [ ] 모든 함수에 타입 힌트가 있습니다.
+- [ ] bare except 절이 없습니다.
+- [ ] 변경 가능한 기본 인수가 없습니다.
+- [ ] 파일 I/O에 컨텍스트 관리자가 사용됩니다.
+- [ ] 함수는 50줄 미만입니다.
+- [ ] 변수 및 함수 이름은 PEP 8(snake_case)을 따릅니다.
 
-## Input Validation Checklist
+## 입력 유효성 검사 체크리스트
 
-- [ ] User input is validated before processing
-- [ ] Edge cases handled (empty strings, None, out-of-range values)
-- [ ] Error messages are clear and helpful
+- [ ] 사용자 입력은 처리 전에 유효성 검사를 거칩니다.
+- [ ] 예외 상황(빈 문자열, None, 범위를 벗어난 값)이 처리됩니다.
+- [ ] 오류 메시지는 명확하고 유용합니다.
 
-## Testing Checklist
+## 테스트 체크리스트
 
-- [ ] New code has corresponding pytest tests
-- [ ] Edge cases are covered
-- [ ] Tests use descriptive names
+- [ ] 새 코드에 해당하는 pytest 테스트가 있습니다.
+- [ ] 예외 상황이 모두 커버됩니다.
+- [ ] 테스트 이름은 설명적입니다.
 
-## Output Format
+## 출력 형식
 
-Present findings as:
+결과를 다음과 같이 표시합니다.
 
 ```
-## Code Checklist: [filename]
+## 코드 체크리스트: [파일 이름]
 
-### Code Quality
-- [PASS/FAIL] Description of finding
+### 코드 품질
+- [통과/실패] 발견 사항에 대한 설명
 
-### Input Validation
-- [PASS/FAIL] Description of finding
+### 입력 유효성 검사
+- [통과/실패] 발견 내용 설명
 
-### Testing
-- [PASS/FAIL] Description of finding
+### 테스트
+- [통과/실패] 발견 내용 설명
 
-### Summary
-[X] items need attention before merge
+### 요약
+[X]개 항목은 병합 전에 조치가 필요합니다.
 ```
