@@ -127,71 +127,71 @@ copilot
 ```bash
 copilot
 
-# PHASE 1: Understand the bug from GitHub (MCP provides this)
-> Get the details of issue #1
+# 1단계: GitHub에서 버그 파악 (MCP 제공)
+> 이슈 #1의 세부 정보 가져오기
 
-# Learn: "find_by_author doesn't work with partial names"
+# 학습 내용: "find_by_author 함수가 부분 이름 일치에 문제가 있습니다"
 
-# PHASE 2: Research best practice (deep research with web + GitHub sources)
-> /research Best practices for Python case-insensitive string matching
+# 2단계: 모범 사례 조사 (웹 및 GitHub 자료를 활용한 심층 조사)
+> /research Python 대소문자 구분 없는 문자열 일치 모범 사례
 
-# PHASE 3: Find related code
-> @samples/book-app-project/books.py Show me the find_by_author method
+# 3단계: 관련 코드 찾기
+> @samples/book-app-project/books.py find_by_author 메서드 표시
 
-# PHASE 4: Get expert analysis
+# 4단계: 전문가 분석 받기
 > /agent
-# Select "python-reviewer"
+# "python-reviewer" 선택
 
-> Analyze this method for issues with partial name matching
+> 부분 이름 일치 관련 문제 분석
 
-# Agent identifies: Method uses exact equality instead of substring matching
+# 에이전트 분석 결과: 메서드가 부분 문자열 일치 대신 정확한 동일성 비교를 사용합니다
 
-# PHASE 5: Fix with agent guidance
-> Implement the fix using lowercase comparison and 'in' operator
+# 5단계: 에이전트의 안내에 따라 수정
+> 소문자 비교 및 ​​'in' 연산자를 사용하여 수정 구현
 
-# PHASE 6: Generate tests
+# 6단계: 테스트 생성
 > /agent
-# Select "pytest-helper"
+# "pytest-helper" 선택
 
-> Generate pytest tests for find_by_author with partial matches
-> Include test cases: partial name, case variations, no matches
+> 생성 pytest에서 find_by_author 함수에 대한 부분 일치 테스트 수행
+> 테스트 케이스 추가: 부분 이름, 대소문자 변형, 일치 항목 없음
 
-# PHASE 7: Commit and PR
-> Generate a commit message for this fix
+# 7단계: 커밋 및 풀 리퀘스트 생성
+> 이 수정 사항에 대한 커밋 메시지 생성
 
-> Create a pull request linking to issue #1
+> 이슈 #1에 연결되는 풀 리퀘스트 생성
 ```
 
 ---
 
 ## 워크플로 2: 코드 검토 자동화 (선택 사항)
 
-> 💡 **This section is optional.** Pre-commit hooks are useful for teams but not required to be productive. Skip this if you're just getting started.
->
-> ⚠️ **Performance note**: This hook calls `copilot -p` for each staged file, which takes several seconds per file. For large commits, consider limiting to critical files or running reviews manually with `/review` instead.
+> 💡 **이 섹션은 선택 사항입니다.** 커밋 전 훅은 팀 작업에 유용하지만 생산성을 위해 필수적인 것은 아닙니다. 처음 시작하는 경우 이 부분을 건너뛰세요.
 
-A **git hook** is a script that Git runs automatically at certain points, For example, right before a commit. You can use this to run automated checks on your code. Here's how to set up an automated Copilot review on your commits:
+> ⚠️ **성능 참고**: 이 훅은 스테이징된 각 파일에 대해 `copilot -p`를 호출하며, 파일당 몇 초가 소요됩니다. 대규모 커밋의 경우 중요한 파일에만 적용하거나 `/review`를 사용하여 수동으로 리뷰를 실행하는 것을 고려해 보세요.
+
+**Git 훅**은 Git이 특정 시점(예: 커밋 직전)에 자동으로 실행하는 스크립트입니다. 이를 통해 코드에 대한 자동화된 검사를 실행할 수 있습니다. 다음은 커밋에 대한 Copilot 자동 리뷰를 설정하는 방법입니다.
 
 ```bash
-# Create a pre-commit hook
+# 사전 커밋 훅 생성
 cat > .git/hooks/pre-commit << 'EOF'
 #!/bin/bash
 
-# Get staged files (Python files only)
+# 스테이징된 파일 가져오기 (파이썬 파일만 해당)
 STAGED=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.py$')
 
 if [ -n "$STAGED" ]; then
-  echo "Running Copilot review on staged files..."
+  echo "스테이징된 파일에 대해 Copilot 검토를 실행 중입니다..."
 
   for file in $STAGED; do
     echo "Reviewing $file..."
 
-    # Use timeout to prevent hanging (60 seconds per file)
-    # --allow-all auto-approves file reads/writes so the hook can run unattended.
-    # Only use this in automated scripts. In interactive sessions, let Copilot ask for permission.
-    REVIEW=$(timeout 60 copilot --allow-all -p "Quick security review of @$file - critical issues only" 2>/dev/null)
-
-    # Check if timeout occurred
+    # 멈춤 현상을 방지하기 위해 타임아웃을 사용합니다(파일당 60초).
+    # --allow-all 옵션은 파일 읽기/쓰기 권한을 자동으로 승인하여 후크가 자동으로 실행되도록 합니다.
+    # 자동화된 스크립트에서만 사용하십시오. 대화형 세션에서는 Copilot이 권한을 요청하도록 하십시오.
+        REVIEW=$(timeout 60 copilot --allow-all -p "Quick security review of @$file - critical issues only" 2>/dev/null)
+    
+    # 타임아웃 발생 여부 확인
     if [ $? -eq 124 ]; then
       echo "Warning: Review timed out for $file (skipping)"
       continue
@@ -204,24 +204,25 @@ if [ -n "$STAGED" ]; then
     fi
   done
 
-  echo "Review passed"
+  echo "검토 통과"
 fi
 EOF
 
 chmod +x .git/hooks/pre-commit
 ```
 
-> ⚠️ **macOS users**: The `timeout` command is not included by default on macOS. Install it with `brew install coreutils` or replace `timeout 60` with a simple invocation without a timeout guard.
+> ⚠️ **macOS 사용자**: `timeout` 명령어는 macOS에 기본적으로 포함되어 있지 않습니다. `brew install coreutils` 명령어로 설치하거나, ​​`timeout 60` 대신 타임아웃 가드가 없는 간단한 명령어를 사용하세요.
 
-> 📚 **Official Documentation**: [Use hooks](https://docs.github.com/copilot/how-tos/copilot-cli/use-hooks) and [Hooks configuration reference](https://docs.github.com/copilot/reference/hooks-configuration) for the complete hooks API.
+> 📚 **공식 문서**: 전체 훅 API에 대한 자세한 내용은 [훅 사용 방법](https://docs.github.com/copilot/how-tos/copilot-cli/use-hooks) 및 [훅 구성 참조](https://docs.github.com/copilot/reference/hooks-configuration)를 참조하세요.
+
 >
-> 💡 **Built-in alternative**: Copilot CLI also has a built-in hooks system (`copilot hooks`) that can run automatically on events like pre-commit. The manual git hook above gives you full control, while the built-in system is simpler to configure. See the docs above to decide which approach fits your workflow.
+> 💡 **내장 대안**: Copilot CLI에는 pre-commit과 같은 이벤트에서 자동으로 실행되는 내장 훅 시스템(`copilot hooks`)도 있습니다. 위의 수동 Git 훅은 완벽한 제어를 제공하는 반면, 내장 시스템은 구성이 더 간단합니다. 어떤 방식이 워크플로에 적합한지 위의 문서를 참조하세요.
 
-Now every commit gets a quick security review:
+이제 모든 커밋은 빠른 보안 검토를 거칩니다.
 
 ```bash
 git add samples/book-app-project/books.py
-git commit -m "Update book collection methods"
+git commit -m "도서 수집 방법을 업데이트합니다"
 
 # Output:
 # Running Copilot review on staged files...
@@ -236,34 +237,34 @@ git commit -m "Update book collection methods"
 
 ## 워크플로 3: 새로운 코드베이스 온보딩
 
-When joining a new project, combine context, agents, and MCP to ramp up fast:
+새로운 프로젝트에 참여할 때는 컨텍스트, 에이전트 및 MCP를 결합하여 빠르게 적응하세요.
 
 ```bash
-# Start Copilot in interactive mode
+# Copilot을 대화형 모드로 시작하세요
 copilot
 
-# PHASE 1: Get the big picture with context
-> @samples/book-app-project/ Explain the high-level architecture of this codebase
+# PHASE 1: 맥락을 고려하여 전체적인 상황을 파악하세요.
+> @samples/book-app-project/ 이 코드베이스의 상위 수준 아키텍처를 설명하십시오.
 
-# PHASE 2: Understand a specific flow
-> @samples/book-app-project/book_app.py Walk me through what happens
-> when a user runs "python book_app.py add"
+# PHASE 2: 특정 흐름을 이해하세요
+> @samples/book-app-project/book_app.py 어떤 일이 발생하는지 설명해 주세요.
+> 사용자가 "python book_app.py add"를 실행할 때
 
-# PHASE 3: Get expert analysis with an agent
+# PHASE 3: Agent와 전문가 분석을 받으세요
 > /agent
-# Select "python-reviewer"
+# "python-reviewer"를 선택하세요
 
-> @samples/book-app-project/books.py Are there any design issues,
-> missing error handling, or improvements you would recommend?
+> @samples/book-app-project/books.py 파일에 디자인 문제,
+> 누락된 오류 처리 또는 권장할 만한 개선 사항이 있습니까?
 
-# PHASE 4: Find something to work on (MCP provides GitHub access)
-> List open issues labeled "good first issue"
+# PHASE 4: 작업할 주제를 찾아보세요 (MCP는 GitHub 접근 권한을 제공합니다)
+> "첫 번째 이슈로 적합"이라고 표시된 미해결 이슈 목록을 확인하세요
 
-# PHASE 5: Start contributing
-> Pick the simplest open issue and outline a plan to fix it
+# PHASE 5: 기여를 시작하세요
+> 가장 간단한 미해결 문제를 선택하고 해결 계획을 세우세요
 ```
 
-This workflow combines `@` context, agents, and MCP into a single onboarding session, exactly the integration pattern from earlier in this chapter.
+이 워크플로는 `@` 컨텍스트, 에이전트 및 MCP를 단일 온보딩 세션으로 결합하며, 이는 이 장 앞부분에서 설명한 통합 패턴과 정확히 일치합니다.
 
 ---
 
@@ -277,42 +278,42 @@ Patterns and habits that make your workflows more effective.
 
 ### 1. 분석에 앞서 맥락 파악부터 시작하세요
 
-Always gather context before asking for analysis:
+분석을 요청하기 전에 항상 맥락을 파악하세요.
 
 ```bash
 # Good
-> Get the details of issue #42
+> 42번 이슈의 자세한 내용을 확인하세요
 > /agent
-# Select python-reviewer
-> Analyze this issue
+# 파이썬 리뷰어를 선택하세요
+> 이 문제를 분석하세요
 
-# Less effective
+# 효과가 떨어짐
 > /agent
-# Select python-reviewer
-> Fix login bug
-# Agent doesn't have issue context
+# 파이썬 리뷰어를 선택하세요
+> 로그인 버그 수정
+# Agent에 문제 컨텍스트가 없습니다.
 ```
 
 ### 2. 차이점을 알아두세요: 에이전트, 스킬, 그리고 사용자 지정 지침
 
-Each tool has a sweet spot:
+각 도구에는 최적의 사용 지점이 있습니다.
 
 ```bash
-# Agents: Specialized personas you explicitly activate
+# Agents: 사용자가 명시적으로 활성화하는 특수 페르소나
 > /agent
-# Select python-reviewer
-> Review this authentication code for security issues
+# 파이썬 리뷰어를 선택
+> 이 인증 코드의 보안 문제를 검토하십시오.
 
-# Skills: Modular capabilities that auto-activate when your prompt
-# matches the skill's description (you must create them first — see Ch 05)
-> Generate comprehensive tests for this code
-# If you have a testing skill configured, it activates automatically
+# Skills: 사용자의 요청에 따라 자동으로 활성화되는 모듈형 기능
+# 스킬 설명과 일치해야 합니다(먼저 생성해야 합니다. 5장을 참조하세요).
+> 이 코드에 대한 포괄적인 테스트를 생성하세요.
+# 테스트 스킬이 구성되어 있으면 자동으로 활성화됩니다.
 
-# Custom instructions (.github/copilot-instructions.md): Always-on
-# guidance that applies to every session without switching or triggering
+# 사용자 지정 지침(.github/copilot-instructions.md): 항상 켜짐
+# 세션 전환이나 트리거 없이 모든 세션에 적용되는 지침입니다.
 ```
 
-> 💡 **Key point**: Agents and skills can both analyze AND generate code. The real difference is **how they activate** — agents are explicit (`/agent`), skills are automatic (prompt-matched), and custom instructions are always on.
+> 💡 **핵심 요점**: 에이전트와 스킬 모두 코드를 분석하고 생성할 수 있습니다. 진정한 차이점은 **활성화 방식**에 있습니다. 에이전트는 명시적 실행(`/agent`)을 통해 작동하고, 스킬은 자동 실행(프롬프트 일치)을 통해 작동하며, 사용자 지정 지침은 항상 활성화되어 있습니다.
 
 ### 3. 회의의 초점을 유지하세요
 
