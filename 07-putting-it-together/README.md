@@ -383,20 +383,20 @@ Put the complete workflow into practice.
 
 ## ▶️ 직접 시도해 보세요
 
-After completing the demos, try these variations:
+데모를 완료한 후 다음 변형들을 시도해 보세요:
 
-1. **End-to-End Challenge**: Pick a small feature (e.g., "list unread books" or "export to CSV"). Use the full workflow:
-   - Plan with `/plan`
-   - Design with agents (python-reviewer, pytest-helper)
+1. **종합 구현 과제**: 작은 기능 하나를 선택하세요(예: "읽지 않은 책 목록 보기" 또는 "CSV 파일로 내보내기"). 전체 워크플로를 활용해 보세요.
+   - `/plan` 명령어를 사용하여 계획을 세우세요.
+   - 에이전트를 활용한 설계 (python-reviewer, pytest-helper)
    - Implement
-   - Generate tests
-   - Create PR
+   - 테스트 생성
+   - PR 만들기
 
-2. **Automation Challenge**: Set up the pre-commit hook from the Code Review Automation workflow. Make a commit with an intentional file path vulnerability. Does it get blocked?
+2. **자동화 챌린지**: 코드 검토 자동화 워크플로에서 사전 커밋 훅을 설정합니다. 의도적으로 파일 경로 취약점을 포함한 커밋을 생성합니다. 이 커밋이 차단됩니까?
 
-3. **Your Production Workflow**: Design your own workflow for a common task you do. Write it down as a checklist. What parts could be automated with skills, agents, or hooks?
+3. **귀사의 생산 워크플로우**: 자주 하는 작업에 대한 워크플로우를 직접 설계해 보세요. 체크리스트 형태로 작성해 보고, 스킬, 에이전트 또는 훅을 활용하여 자동화할 수 있는 부분은 무엇인지 생각해 보세요.
 
-**Self-Check**: You've completed the course when you can explain to a colleague how agents, skills, and MCP work together - and when to use each.
+**셀프 체크**: 에이전트, 스킬, MCP가 어떻게 상호 작용하는지, 그리고 각각을 언제 사용해야 하는지 동료에게 설명할 수 있게 되면 과정을 완료한 것입니다.
 
 ---
 
