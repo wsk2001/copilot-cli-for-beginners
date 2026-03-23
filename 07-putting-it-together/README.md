@@ -43,79 +43,78 @@
 편집기, 터미널, 테스트 러너, GitHub UI를 번갈아 가며 사용하고 매번 작업 내용을 잃어버리는 대신, 모든 도구를 하나의 터미널 세션에서 통합하여 사용할 수 있습니다. 이 패턴에 대한 자세한 설명은 아래 [통합 패턴](#the-integration-pattern-for-power-users) 섹션에서 다루겠습니다.
 
 ```bash
-# Start Copilot in interactive mode
+# Copilot을 대화형 모드로 시작
 copilot
 
-> I need to add a "list unread" command to the book app that shows only
-> books where read is False. What files need to change?
+> 읽지 않은 책 목록 보기 기능을 도서 앱에 추가하고 싶습니다.
+> 읽은 책이 False인 책만 표시되도록 하려면 어떤 파일을 수정해야 하나요?
 
-# Copilot creates high-level plan...
+# Copilot이 상위 수준 계획을 생성합니다...
 
-# SWITCH TO PYTHON-REVIEWER AGENT
+# PYTHON-REVIEWER 에이전트로 전환
 > /agent
-# Select "python-reviewer"
+# "python-reviewer" 선택
 
-> @samples/book-app-project/books.py Design a get_unread_books method.
-> What is the best approach?
+> @samples/book-app-project/books.py 파일에서 읽지 않은 책 수를 가져오는 get_unread_books 메서드를 설계하세요.
+> 가장 좋은 접근 방식은 무엇일까요?
 
-# Python-reviewer agent produces:
-# - Method signature and return type
-# - Filter implementation using list comprehension
-# - Edge case handling for empty collections
+# Python-reviewer 에이전트 출력 결과:
+# - 메서드 시그니처 및 반환 타입
+# - 리스트 컴프리헨션을 사용한 필터 구현
+# - 빈 컬렉션에 대한 예외 처리
 
-# SWITCH TO PYTEST-HELPER AGENT
+# PYTEST-HELPER 에이전트로 전환
 > /agent
-# Select "pytest-helper"
+# "pytest-helper" 선택
 
-> @samples/book-app-project/tests/test_books.py Design test cases for
-> filtering unread books.
+> @samples/book-app-project/tests/test_books.py 읽지 않은 책 필터링에 대한 테스트 케이스를 설계합니다.
 
-# Pytest-helper agent produces:
-# - Test cases for empty collections
-# - Test cases with mixed read/unread books
-# - Test cases with all books read
+# Pytest-helper 에이전트는 다음을 생성합니다.
+# - 빈 컬렉션에 대한 테스트 케이스
+# - 읽은 책과 읽지 않은 책이 혼합된 경우의 테스트 케이스
+# - 모든 책을 읽은 경우의 테스트 케이스
 
-# IMPLEMENT
-> Add a get_unread_books method to BookCollection in books.py
-> Add a "list unread" command option in book_app.py
-> Update the help text in the show_help function
+# 구현
+> books.py의 BookCollection에 get_unread_books 메서드 추가
+> book_app.py에 "읽지 않은 책 목록 보기" 명령 옵션 추가
+> show_help 함수의 도움말 텍스트 업데이트
 
-# TEST
-> Generate comprehensive tests for the new feature
+# 테스트
+> 새 기능에 대한 포괄적인 테스트 생성
 
-# Multiple tests are generated similar to the following:
-# - Happy path (3 tests) — filters correctly, excludes read, includes unread
-# - Edge cases (4 tests) — empty collection, all read, none read, single book
-# - Parametrized (5 cases) — varying read/unread ratios via @pytest.mark.parametrize
-# - Integration (4 tests) — interplay with mark_as_read, remove_book, add_book, and data integrity
+# 다음과 유사한 여러 테스트가 생성됩니다.
+# - 정상 경로(3개 테스트) — 필터링이 올바르게 작동하고, 읽은 책은 제외하고, 읽지 않은 책은 포함합니다.
+# - 예외 상황(4개 테스트) — 빈 컬렉션, 모든 책 읽음, 읽지 않은 책 없음, 책 한 권만 있는 경우
+# - 매개변수화된 경우(5개 테스트) — @pytest.mark.parametrize를 통해 읽은 책과 읽지 않은 책의 비율을 변경합니다.
+# - 통합 테스트(4개 테스트) — mark_as_read, remove_book, add_book 및 데이터 무결성과의 상호 작용
 
-# Review the changes
+# 변경 사항 검토
 > /review
 
-# If review passes, use /pr to operate on the pull request for the current branch
-> /pr [view|create|fix|auto]
+# 검토가 통과되면 /pr을 사용하여 제출하세요. 현재 브랜치에 대한 풀 리퀘스트를 작업합니다.
+> /pr [보기|생성|수정|자동]
 
-# Or ask naturally if you want Copilot to draft it from the terminal
-> Create a pull request titled "Feature: Add list unread books command"
+# 또는 Copilot이 터미널에서 풀 리퀘스트를 생성하도록 하려면 자연스럽게 요청할 수도 있습니다.
+> "Feature: Add list unread books command"라는 제목의 풀 리퀘스트를 생성합니다.
 ```
 
-**Traditional approach**: Switching between editor, terminal, test runner, docs, and GitHub UI. Each switch causes context loss and friction.
+**기존 방식**: 에디터, 터미널, 테스트 러너, 문서, GitHub UI 사이를 계속 전환해야 했습니다. 전환할 때마다 맥락을 놓치고 불편함을 느꼈습니다.
 
-**The key insight**: You directed specialists like an architect. They handled the details. You handled the vision.
+**핵심 통찰**: 마치 건축가처럼 전문가들을 이끌었습니다. 그들은 세부 사항을 처리했고, 당신은 비전을 제시했습니다.
 
-> 💡 **Going further**: For large multi-step plans like this, try `/fleet` to let Copilot run independent subtasks in parallel. See the [official docs](https://docs.github.com/copilot/concepts/agents/copilot-cli/fleet) for details.
+> 💡 **더 나아가** 이와 같은 대규모 다단계 계획의 경우, Copilot이 독립적인 하위 작업을 병렬로 실행할 수 있도록 `/fleet`을 사용해 보세요. 자세한 내용은 [공식 문서](https://docs.github.com/copilot/concepts/agents/copilot-cli/fleet)를 참조하십시오.
 
 ---
 
-# Additional Workflows
+# 추가 워크플로
 
 <img src="images/combined-workflows.png" alt="People assembling a colorful giant jigsaw puzzle with gears, representing how agents, skills, and MCP combine into unified workflows" width="800"/>
 
-For power users who completed Chapters 04-06, these workflows show how agents, skills, and MCP multiply your effectiveness.
+4장부터 6장까지 완료한 고급 사용자라면, 이 워크플로를 통해 Agent, 스킬, 그리고 MCP가 어떻게 업무 효율성을 극대화하는지 확인할 수 있습니다.
 
-## The Integration Pattern
+## 통합 패턴
 
-Here's the mental model for combining everything:
+모든 것을 결합하는 개념적 모델은 다음과 같습니다.
 
 <img src="images/integration-pattern.png" alt="The Integration Pattern - A 4-phase workflow: Gather Context (MCP), Analyze and Plan (Agents), Execute (Skills + Manual), Complete (MCP)" width="800"/>
 
