@@ -270,7 +270,7 @@ copilot
 
 # 모범 사례 및 자동화
 
-Patterns and habits that make your workflows more effective.
+업무 효율성을 높이는 패턴과 습관.
 
 ---
 
