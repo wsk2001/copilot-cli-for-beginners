@@ -1,46 +1,46 @@
 ![Chapter 07: Putting It All Together](images/chapter-header.png)
 
-> **Everything you learned combines here. Go from idea to merged PR in a single session.**
+**지금까지 배운 모든 것을 여기서 활용하세요. 아이디어 구상부터 PR 병합까지 단 한 번의 세션으로 완료할 수 있습니다.**
 
-In this chapter, you'll bring together everything you've learned into complete workflows. You'll build features using multi-agent collaboration, set up pre-commit hooks that catch security issues before they're committed, integrate Copilot into CI/CD pipelines, and go from feature idea to merged PR in a single terminal session. This is where GitHub Copilot CLI becomes a genuine force multiplier.
+이 장에서는 지금까지 배운 모든 내용을 통합하여 완벽한 워크플로우를 구축합니다. 다중 에이전트 협업을 사용하여 기능을 개발하고, 커밋 전에 보안 문제를 감지하는 사전 커밋 훅을 설정하고, Copilot을 CI/CD 파이프라인에 통합하고, 기능 아이디어 구상부터 PR 병합까지 단 한 번의 터미널 세션으로 완료하는 방법을 배웁니다. GitHub Copilot CLI가 진정한 시너지 효과를 발휘하는 부분입니다.
 
-> 💡 **Note**: This chapter shows how to combine everything you've learned. **You don't need agents, skills, or MCP to be productive (although they can be very helpful).** The core workflow — describe, plan, implement, test, review, ship — works with just the built-in features from Chapters 00-03.
+💡 **참고**: 이 장에서는 지금까지 배운 모든 내용을 통합하는 방법을 보여줍니다. **생산성을 확보하기 위해 에이전트, 스킬 또는 MCP가 반드시 필요한 것은 아닙니다(물론 매우 유용할 수 있습니다).** 핵심 워크플로우(설명, 계획, 구현, 테스트, 검토, 배포)는 0장부터 3장까지의 내장 기능만으로도 작동합니다.
 
-## 🎯 Learning Objectives
+## 🎯 학습 목표
 
-By the end of this chapter, you'll be able to:
+이 장을 마치면 다음을 수행할 수 있게 됩니다.
 
-- Combine agents, skills, and MCP (Model Context Protocol) in unified workflows
-- Build complete features using multi-tool approaches
-- Set up basic automation with hooks
-- Apply best practices for professional development
+- 에이전트, 스킬 및 MCP(모델 컨텍스트 프로토콜)를 통합 워크플로로 결합
+- 다양한 도구를 활용하여 완벽한 기능 구축
+- 훅을 사용하여 기본적인 자동화 설정
+- 전문성 개발을 위한 모범 사례 적용
 
-> ⏱️ **Estimated Time**: ~75 minutes (15 min reading + 60 min hands-on)
+> ⏱️ **예상 소요 시간**: 약 75분 (읽기 15분 + 실습 60분)
+---
+
+## 🧩 실제 사례: 오케스트라
+
+<img src="images/orchestra-analogy.png" alt="오케스트라 비유 - 통합 워크플로" width="800"/>
+
+심포니 오케스트라는 여러 파트로 구성됩니다.
+- **현악기**는 기반을 제공합니다(핵심 워크플로와 유사).
+- **금관악기**는 힘을 더합니다(전문 지식을 갖춘 에이전트와 유사).
+- **목관악기**는 색채를 더합니다(역량을 확장하는 스킬과 유사).
+
+- **타악기**는 리듬을 유지합니다(MCP가 외부 시스템과 연결되는 것과 유사).
+
+각 파트는 개별적으로는 한계가 있지만, 잘 지휘될 때 비로소 웅장한 소리를 만들어냅니다.
+
+**이 장에서 바로 그 방법을 알려드립니다!**<br>
+*지휘자가 오케스트라를 지휘하듯, 에이전트, 스킬, MCP를 통합 워크플로로 조율합니다.*
+
+코드 수정, 테스트 생성, 코드 검토, 그리고 PR 생성까지 모든 작업을 한 번에 수행하는 시나리오를 살펴보면서 시작해 보겠습니다.
 
 ---
 
-## 🧩 Real-World Analogy: The Orchestra
+## 아이디어 구상부터 PR 병합까지 한 번의 세션으로 완료하기
 
-<img src="images/orchestra-analogy.png" alt="Orchestra Analogy - Unified Workflow" width="800"/>
-
-A symphony orchestra has many sections:
-- **Strings** provide the foundation (like your core workflows)
-- **Brass** adds power (like agents with specialized expertise)
-- **Woodwinds** add color (like skills that extend capabilities)
-- **Percussion** keeps rhythm (like MCP connecting to external systems)
-
-Individually, each section sounds limited. Together, conducted well, they create something magnificent.
-
-**That's what this chapter teaches!**<br>
-*Like a conductor with an orchestra, you orchestrate agents, skills, and MCP into unified workflows*
-
-Let's start by walking through a scenario that modifies code, generates tests, reviews it, and creates a PR - all in one session.
-
----
-
-## Idea to Merged PR in One Session
-
-Instead of switching between your editor, terminal, test runner, and GitHub UI and losing context each time, you can combine all your tools in one terminal session. We'll break down this pattern in the [Integration Pattern](#the-integration-pattern-for-power-users) section below.
+편집기, 터미널, 테스트 러너, GitHub UI를 번갈아 가며 사용하고 매번 작업 내용을 잃어버리는 대신, 모든 도구를 하나의 터미널 세션에서 통합하여 사용할 수 있습니다. 이 패턴에 대한 자세한 설명은 아래 [통합 패턴](#the-integration-pattern-for-power-users) 섹션에서 다루겠습니다.
 
 ```bash
 # Start Copilot in interactive mode
