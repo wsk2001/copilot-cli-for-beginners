@@ -315,34 +315,34 @@ Patterns and habits that make your workflows more effective.
 
 > 💡 **핵심 요점**: 에이전트와 스킬 모두 코드를 분석하고 생성할 수 있습니다. 진정한 차이점은 **활성화 방식**에 있습니다. 에이전트는 명시적 실행(`/agent`)을 통해 작동하고, 스킬은 자동 실행(프롬프트 일치)을 통해 작동하며, 사용자 지정 지침은 항상 활성화되어 있습니다.
 
-### 3. 회의의 초점을 유지하세요
+### 3. Session의 초점을 유지하세요
 
-Use `/rename` to label your session (makes it easy to find in history) and `/exit` to end it cleanly:
+세션에 이름을 지정하려면 `/rename` 명령어를 사용하고(이렇게 하면 기록에서 쉽게 찾을 수 있습니다), 깔끔하게 종료하려면 `/exit` 명령어를 사용하세요.
 
 ```bash
-# Good: One feature per session
+# Good: 세션당 하나의 기능만 사용 가능
 > /rename list-unread-feature
-# Work on list unread
+# 읽지 않은 목록 작업
 > /exit
 
 copilot
 > /rename export-csv-feature
-# Work on CSV export
+# CSV 내보내기 작업
 > /exit
 
-# Less effective: Everything in one long session
+# 효과가 떨어지는 방식: 모든 것을 한 번의 긴 시간에 끝내는 것
 ```
 
 ### 4. Copilot을 사용하여 워크플로우를 재사용 가능하게 만드세요
 
-Instead of just documenting workflows in a wiki, encode them directly in your repo where Copilot can use them:
+워크플로를 위키에 문서화하는 대신, Copilot이 사용할 수 있도록 저장소에 직접 인코딩하세요.
 
-- **Custom instructions** (`.github/copilot-instructions.md`): Always-on guidance for coding standards, architecture rules, and build/test/deploy steps. Every session follows them automatically.
-- **Prompt files** (`.github/prompts/`): Reusable, parameterized prompts your team can share — like templates for code reviews, component generation, or PR descriptions.
-- **Custom agents** (`.github/agents/`): Encode specialized personas (e.g., a security reviewer or a docs writer) that anyone on the team can activate with `/agent`.
-- **Custom skills** (`.github/skills/`): Package step-by-step workflow instructions that auto-activate when relevant.
+- **Custom instructions** (`.github/copilot-instructions.md`): 코딩 표준, 아키텍처 규칙, 빌드/테스트/배포 단계에 대한 항상 연결된 안내를 제공합니다. 모든 세션은 자동으로 그들을 따라갑니다.
+- **Prompt files** (`.github/prompts/`): 코드 리뷰, 컴포넌트 생성, PR 설명 템플릿 등 재사용 가능한 매개변수화된 프롬프트를 팀이 공유할 수 있습니다.
+- **Custom agents** (`.github/agents/`): 팀 내 누구나 '/agent'로 활성화할 수 있는 전문 페르소나(예: 보안 리뷰어나 문서 작성자)를 인코딩합니다.
+- **Custom skills** (`.github/skills/`): 관련 사항이 있을 때 자동으로 활성화되는 단계별 워크플로우 지침을 패키지로 구성하세요.
 
-> 💡 **The payoff**: New team members get your workflows for free — they're built into the repo, not locked in someone's head.
+> 💡 **결점**: 새로운 팀 구성원은 워크플로를 무료로 이용할 수 있습니다. 워크플로는 저장소에 구축되어 있으므로 누군가의 머릿속에만 갇혀 있지 않습니다.
 
 ---
 
