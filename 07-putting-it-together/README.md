@@ -120,9 +120,9 @@ copilot
 
 ---
 
-## Workflow 1: Bug Investigation and Fix
+## 워크플로 1: 버그 조사 및 수정
 
-Real-world bug fixing with full tool integration:
+실제 환경에서 버그를 수정하고 모든 도구를 통합적으로 활용합니다.
 
 ```bash
 copilot
@@ -164,7 +164,7 @@ copilot
 
 ---
 
-## Workflow 2: Code Review Automation (Optional)
+## 워크플로 2: 코드 검토 자동화 (선택 사항)
 
 > 💡 **This section is optional.** Pre-commit hooks are useful for teams but not required to be productive. Skip this if you're just getting started.
 >
@@ -234,7 +234,7 @@ git commit -m "Update book collection methods"
 
 ---
 
-## Workflow 3: Onboarding to a New Codebase
+## 워크플로 3: 새로운 코드베이스 온보딩
 
 When joining a new project, combine context, agents, and MCP to ramp up fast:
 
@@ -267,15 +267,15 @@ This workflow combines `@` context, agents, and MCP into a single onboarding ses
 
 ---
 
-# Best Practices & Automation
+# 모범 사례 및 자동화
 
 Patterns and habits that make your workflows more effective.
 
 ---
 
-## Best Practices
+## 모범 사례
 
-### 1. Start with Context Before Analysis
+### 1. 분석에 앞서 맥락 파악부터 시작하세요
 
 Always gather context before asking for analysis:
 
@@ -293,7 +293,7 @@ Always gather context before asking for analysis:
 # Agent doesn't have issue context
 ```
 
-### 2. Know the Difference: Agents, Skills, and Custom Instructions
+### 2. 차이점을 알아두세요: 에이전트, 스킬, 그리고 사용자 지정 지침
 
 Each tool has a sweet spot:
 
@@ -314,7 +314,7 @@ Each tool has a sweet spot:
 
 > 💡 **Key point**: Agents and skills can both analyze AND generate code. The real difference is **how they activate** — agents are explicit (`/agent`), skills are automatic (prompt-matched), and custom instructions are always on.
 
-### 3. Keep Sessions Focused
+### 3. 회의의 초점을 유지하세요
 
 Use `/rename` to label your session (makes it easy to find in history) and `/exit` to end it cleanly:
 
@@ -332,7 +332,7 @@ copilot
 # Less effective: Everything in one long session
 ```
 
-### 4. Make Workflows Reusable with Copilot
+### 4. Copilot을 사용하여 워크플로우를 재사용 가능하게 만드세요
 
 Instead of just documenting workflows in a wiki, encode them directly in your repo where Copilot can use them:
 
@@ -345,11 +345,11 @@ Instead of just documenting workflows in a wiki, encode them directly in your re
 
 ---
 
-## Bonus: Production Patterns
+## 보너스: 제작 패턴
 
-These patterns are optional but valuable for professional environments.
+이 패턴들은 선택 사항이지만, 전문적인 환경에서 유용합니다.
 
-### PR Description Generator
+### 보도자료 설명 생성기
 
 ```bash
 # Generate comprehensive PR descriptions
@@ -364,7 +364,7 @@ $COMMITS
 Include: Summary, Changes Made, Testing Done, Screenshots Needed"
 ```
 
-### CI/CD Integration
+### CI/CD 통합
 
 For teams with existing CI/CD pipelines, you can automate Copilot reviews on every pull request using GitHub Actions. This includes posting review comments automatically and filtering for critical issues.
 
@@ -372,7 +372,7 @@ For teams with existing CI/CD pipelines, you can automate Copilot reviews on eve
 
 ---
 
-# Practice
+# 관행
 
 <img src="../images/practice.png" alt="Warm desk setup with monitor showing code, lamp, coffee cup, and headphones ready for hands-on practice" width="800"/>
 
@@ -380,7 +380,7 @@ Put the complete workflow into practice.
 
 ---
 
-## ▶️ Try It Yourself
+## ▶️ 직접 시도해 보세요
 
 After completing the demos, try these variations:
 
@@ -399,113 +399,111 @@ After completing the demos, try these variations:
 
 ---
 
-## 📝 Assignment
+## 📝 과제
 
-### Main Challenge: End-to-End Feature
+### 주요 과제: 엔드 투 엔드 기능 구현
 
-The hands-on examples walked through building a "list unread books" feature. Now practice the full workflow on a different feature: **search books by year range**:
+실습 예제를 통해 "읽지 않은 책 목록" 기능을 구축하는 과정을 단계별로 안내했습니다. 이제 다른 기능인 **연도 범위로 책 검색**에 전체 워크플로를 적용해 보겠습니다.
 
-1. Start Copilot and gather context: `@samples/book-app-project/books.py`
-2. Plan with `/plan Add a "search by year" command that lets users find books published between two years`
-3. Implement a `find_by_year_range(start_year, end_year)` method in `BookCollection`
-4. Add a `handle_search_year()` function in `book_app.py` that prompts the user for start and end years
-5. Generate tests: `@samples/book-app-project/books.py @samples/book-app-project/tests/test_books.py Generate tests for find_by_year_range() including edge cases like invalid years, reversed range, and no results.`
-6. Review with `/review`
-7. Update the README: `@samples/book-app-project/README.md Add documentation for the new "search by year" command.`
-8. Generate a commit message
+1. Copilot을 시작하고 컨텍스트를 수집합니다. `@samples/book-app-project/books.py`
+2. `/plan` 명령으로 계획을 세웁니다. 사용자가 두 해 사이에 출판된 책을 찾을 수 있는 "연도별 검색" 명령을 추가합니다.
+3. `BookCollection` 클래스에 `find_by_year_range(start_year, end_year)` 메서드를 구현합니다.
+4. `book_app.py` 파일에 시작 연도와 종료 연도를 입력받는 `handle_search_year()` 함수를 추가합니다.
+5. 테스트를 생성합니다. `@samples/book-app-project/books.py @samples/book-app-project/tests/test_books.py `잘못된 연도, 범위 반전, 검색 결과 없음과 같은 예외 상황을 포함하여 `find_by_year_range()` 함수에 대한 테스트를 생성합니다.`
+6. `/review` 명령으로 검토합니다.
+7. README 파일을 업데이트합니다. `@samples/book-app-project/README.md`에 다음 내용을 추가합니다. 새로운 "연도별 검색" 명령에 대한 문서를 작성합니다.
+8. 커밋 메시지를 생성합니다.
 
-Document your workflow as you go.
+진행 과정을 문서화하세요.
 
-**Success criteria**: You've completed the feature from idea to commit using Copilot CLI, including planning, implementation, tests, documentation, and review.
+**성공 기준**: Copilot CLI를 사용하여 아이디어 구상부터 커밋까지(계획, 구현, 테스트, 문서화 및 검토 포함) 기능을 완료했습니다.
 
-> 💡 **Bonus**: If you have agents set up from Chapter 04, try creating and using custom agents. For example, an error-handler agent for implementation review and a doc-writer agent for the README update.
+> 💡 **보너스**: 4장에서 에이전트를 설정했다면, 사용자 지정 에이전트를 만들어 사용해 보세요. 예를 들어, 구현 검토를 위한 오류 처리 에이전트와 README 업데이트를 위한 문서 작성 에이전트를 만들 수 있습니다.
 
-<details>
-<summary>💡 Hints (click to expand)</summary>
+<세부 정보>
+<요약>💡 힌트 (클릭하여 펼치기)</요약>
 
-**Follow the pattern from the ["Idea to Merged PR"](#idea-to-merged-pr-in-one-session) example** at the top of this chapter. The key steps are:
+**이 장 상단의 ["아이디어에서 병합된 PR까지"](#idea-to-merged-pr-in-one-session) 예제의 패턴을 따르세요.** 주요 단계는 다음과 같습니다.
 
-1. Gather context with `@samples/book-app-project/books.py`
-2. Plan with `/plan Add a "search by year" command`
-3. Implement the method and command handler
-4. Generate tests with edge cases (invalid input, empty results, reversed range)
-5. Review with `/review`
-6. Update README with `@samples/book-app-project/README.md`
-7. Generate commit message with `-p`
+1. `@samples/book-app-project/books.py`를 사용하여 컨텍스트를 수집합니다.
+2. `/plan Add a “search by year” command`를 사용하여 계획을 수립합니다.
+3. 메서드와 명령 핸들러를 구현합니다.
+4. 예외 상황(잘못된 입력, 빈 결과, 역순 범위)을 고려한 테스트를 생성합니다.
+5. `/review`를 사용하여 검토합니다.
+6. `@samples/book-app-project/README.md`를 사용하여 README를 업데이트합니다.
+7. `-p` 옵션을 사용하여 커밋 메시지를 생성합니다.
 
-**Edge cases to think about:**
-- What if the user enters "2000" and "1990" (reversed range)?
-- What if no books match the range?
-- What if the user enters non-numeric input?
+**고려해야 할 예외 상황:**
+- 사용자가 "2000"과 "1990"을 입력하는 경우(역순 범위)는 어떻게 처리할까요?
+- 범위에 맞는 책이 없는 경우는 어떻게 처리할까요?
+- 사용자가 숫자가 아닌 값을 입력하는 경우는 어떻게 처리할까요?
 
-**The key is practicing the full workflow** from idea → context → plan → implement → test → document → commit.
+**핵심은 아이디어 → 컨텍스트 → 계획 → 구현 → 테스트 → 문서화 → 커밋의 전체 워크플로를 연습하는 것입니다.**
 
 </details>
 
 ---
 
 <details>
-<summary>🔧 <strong>Common Mistakes</strong> (click to expand)</summary>
+<summary>🔧 <strong>흔히 저지르는 실수</strong> (클릭하여 펼치기)</summary>
 
-| Mistake | What Happens | Fix |
+| 실수 | 발생 원인 | 해결 방법 |
 |---------|--------------|-----|
-| Jumping straight to implementation | Miss design issues that are costly to fix later | Use `/plan` first to think through the approach |
-| Using one tool when multiple would help | Slower, less thorough results | Combine: Agent for analysis → Skill for execution → MCP for integration |
-| Not reviewing before committing | Security issues or bugs slip through | Always run `/review` or use a [pre-commit hook](#workflow-2-code-review-automation-optional) |
-| Forgetting to share workflows with team | Each person reinvents the wheel | Document patterns in shared agents, skills, and instructions |
+| 바로 구현으로 넘어감 | 나중에 수정하는 데 비용이 많이 드는 설계 문제를 놓침 | 먼저 `/plan`을 사용하여 접근 방식을 구상함 |
+| 여러 도구를 활용할 수 있는데도 하나의 도구만 사용함 | 속도가 느리고 결과가 불완전함 | 조합: 분석용 에이전트 → 실행용 스킬 → 통합용 MCP |
+| 커밋 전에 검토하지 않음 | 보안 문제나 버그가 발생함 | 항상 `/review`를 실행하거나 [pre-commit hook](#workflow-2-code-review-automation-optional)을 사용함 |
+| 팀과 워크플로를 공유하는 것을 잊음 | 각자 바퀴를 다시 발명함 | 공유 에이전트, 스킬 및 지침에 패턴을 문서화함 |
 
 </details>
 
 ---
 
-# Summary
+# 요약
 
-## 🔑 Key Takeaways
+## 🔑 핵심 요점
 
-1. **Integration > Isolation**: Combine tools for maximum impact
-2. **Context first**: Always gather required context before analysis
-3. **Agents analyze, Skills execute**: Use the right tool for the job
-4. **Automate repetition**: Hooks and scripts multiply your effectiveness
-5. **Document workflows**: Shareable patterns benefit the whole team
+1. **통합 > 분리**: 최대 효과를 위해 도구를 결합하세요.
+2. **맥락 우선**: 분석 전에 항상 필요한 맥락을 수집하세요.
+3. **에이전트는 분석, 스킬은 실행**: 작업에 맞는 도구를 사용하세요.
+4. **반복 작업 자동화**: 훅과 스크립트를 활용하여 효율성을 높이세요.
+5. **워크플로우 문서화**: 공유 가능한 패턴은 팀 전체에 도움이 됩니다.
 
-> 📋 **Quick Reference**: See the [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/cli-command-reference) for a complete list of commands and shortcuts.
-
+> 📋 **빠른 참조**: 전체 명령 및 단축키 목록은 [GitHub Copilot CLI 명령 참조](https://docs.github.com/en/copilot/reference/cli-command-reference)를 참조하세요.
 ---
 
-## 🎓 Course Complete!
+## 🎓 과정 완료!
 
-Congratulations! You've learned:
+축하합니다! 다음 내용을 학습하셨습니다.
 
-| Chapter | What You Learned |
-|---------|-------------------|
-| 00 | Copilot CLI installation and Quick Start |
-| 01 | Three modes of interaction |
-| 02 | Context management with @ syntax |
-| 03 | Development workflows |
-| 04 | Specialized agents |
-| 05 | Extensible skills |
-| 06 | External connections with MCP |
-| 07 | Unified production workflows |
+| 챕터 | 학습 내용 |
+---------|-------------------|
+| 00 | Copilot CLI 설치 및 빠른 시작 |
+| 01 | 세 가지 상호 작용 모드 |
+| 02 | @ 구문을 사용한 컨텍스트 관리 |
+| 03 | 개발 워크플로 |
+| 04 | 특수 에이전트 |
+| 05 | 확장 가능한 스킬 |
+| 06 | MCP를 사용한 외부 연결 |
+| 07 | 통합 프로덕션 워크플로 |
 
-You're now equipped to use GitHub Copilot CLI as a genuine force multiplier in your development workflow.
+이제 GitHub Copilot CLI를 개발 워크플로에서 진정한 시너지 효과를 내는 도구로 활용할 준비가 되었습니다.
 
-## ➡️ What's Next
+## ➡️ 다음 단계
 
-Your learning doesn't stop here:
+학습은 여기서 끝나지 않습니다.
 
-1. **Practice daily**: Use Copilot CLI for real work
-2. **Build custom tools**: Create agents and skills for your specific needs
-3. **Share knowledge**: Help your team adopt these workflows
-4. **Stay updated**: Follow GitHub Copilot updates for new features
+1. **매일 연습하세요**: Copilot CLI를 사용하여 실제 업무를 수행하세요.
+2. **맞춤형 도구를 만드세요**: 특정 요구 사항에 맞는 에이전트와 스킬을 제작하세요.
+3. **지식을 공유하세요**: 팀원들이 이러한 워크플로를 도입하도록 지원하세요.
+4. **최신 정보를 확인하세요**: GitHub Copilot 업데이트를 팔로우하여 새로운 기능을 확인하세요.
 
-### Resources
-
+### 자료
 - [GitHub Copilot CLI Documentation](https://docs.github.com/copilot/concepts/agents/about-copilot-cli)
 - [MCP Server Registry](https://github.com/modelcontextprotocol/servers)
 - [Community Skills](https://github.com/topics/copilot-skill)
 
 ---
 
-**Great job! Now go build something amazing.**
+정말 잘했어요! 이제 멋진 작품을 만들어 보세요.
 
 **[← Back to Chapter 06](../06-mcp-servers/README.md)** | **[Return to Course Home →](../README.md)**
